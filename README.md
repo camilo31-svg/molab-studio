@@ -7,16 +7,24 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo inicial de 21 fichas de 12 fuentes oficiales: 7 protocolos con parámetros revisados desde PDF y 14 referencias pendientes de estructurar.
+- Catálogo v2: 538 fichas, 189 de Cloning y 16 fuentes. 497 registros bibliográficos de PubMed obtenidos en 31 búsquedas dirigidas y deduplicados. 12 fichas tienen pasos revisados en fuente primaria; el resto son documentos o publicaciones relacionadas, no recetas listas para ejecutar.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación.
 - Ejecución guiada con siguiente/anterior, condiciones, cronómetros, reanudación y registro del experimento.
 - Soluciones molares, masa/volumen, pureza, diluciones, DNA molar, ratios de cloning, RPM/RCF y ΔΔCt.
-- 13 referencias de medios agrupadas en microbiológicos, hongos, plantas y células animales/humanas. Once dosis de polvo comercial revisadas; las demás conservan enlace a su formulación y no generan cantidades inventadas.
-- Compuestos personalizados con sal/hidratación y masa molecular editable.
+- 30 fichas de medios para microbiología, hongos, plantas y células animales/humanas. 13 dosis comerciales calculables; el resto enlaza la formulación sin inventar dosis.
+- 29 formas químicas en la base. Preparación de stocks de reguladores vegetales por producto: IAA, IBA, NAA, BAP, kinetina, GA3, TDZ, zeatina y 2iP. Seguridad y SDS cuando se han verificado; los campos pendientes se identifican expresamente. Compuestos personales con CAS, proveedor, disolvente, diluyente, preparación y datos de seguridad.
 - Exportación/importación de copia personal, CSV de master mix y JSON de registros. Impresión.
 - PWA con acceso sin conexión después de la primera carga (los documentos externos requieren Internet).
+
+## Banco de trabajo v2
+
+En Cálculos → Banco de trabajo: stocks con balance del predisolvente, constructor de buffers/medios, diluciones seriadas, Neubauer/viabilidad/siembra y duplicación, conteo manual de colonias y células sobre imagen, calibración de distancias, placas de 6/12/24/96/384 pozos con etiquetas y CSV, multicronómetros, curva patrón lineal, contadores por clase, DNA/complementaria/traducción/GC/Tm corta/A260, inventario por lote y agenda con exportación ICS.
+
+Inspiración funcional: [Lab Laps](https://www.lablaps.com/). Implementación propia: sin copiar código, interfaz o recursos. El conteo es manual; no incluye detección por IA, interpretación clínica ni sincronización cloud. Los datos e imágenes permanecen locales; las imágenes y marcas no persisten tras recargar (exportar PNG/CSV). Los temporizadores recuperan la hora de vencimiento, pero el navegador puede suspender los avisos en segundo plano.
+
+Los favoritos, notas y registros v1 se conservan. La copia personal v1 incluye también los nuevos datos de banco; importar/exportar permite trasladarlos entre dispositivos. La app no controla el equipo de laboratorio.
 
 ## Ejecutar y verificar
 
@@ -68,3 +76,15 @@ Cobertura de más productos, mayor estructuración de medios y cultivo in vitro,
 ## Licencia
 
 Código propio: MIT. Marcas, artículos y manuales enlazados pertenecen a sus respectivos titulares y no quedan relicenciados.
+
+## Búsqueda bibliográfica
+
+`literature-index.json` guarda búsquedas, fecha, procedencia, metadatos y exclusiones. `literature-data.js` sirve el catálogo sin peticiones a PubMed desde el navegador. Búsquedas limitadas a 20 resultados por técnica y fecha ≤ 2026-10-01; no afirman agotar toda la literatura ni revisar cada artículo. La consulta se realizó con `ncbi-entrez-skill`; no se republican resúmenes completos o artículos. Algunas cadenas muy largas están abreviadas por el proveedor de la skill.
+
+Reindexar requiere Python, requests y la skill NCBI Entrez. Ejemplo:
+
+```sh
+python scripts/index-pubmed.py --skill-script /ruta/ncbi-entrez-skill/scripts/ncbi_entrez.py
+```
+
+La reindexación reemplaza solamente metadatos, no los pasos revisados. Revisar cambios y exclusiones antes de publicar. El intento Europe PMC devolvió HTTP 503 y no aportó datos; `index-literature.mjs` conserva esa alternativa de consulta.
