@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {solutionMass,dilution,masterMix,rpmToRcf,rcfToRpm,insertMass,dnaPmol,thermalSeconds,validateProgram} from '../calc.js';
+import {protocols,media,sources} from '../data.js';
+test('masa molar: 100 mL NaCl 100 mM = 0.5844 g',()=>assert.ok(Math.abs(solutionMass({concentration:100,unit:'mM',volume:100,volumeUnit:'mL',mw:58.44,purity:100})-.5844)<1e-10));
+test('m/v y pureza se calculan sin usar masa molar',()=>assert.equal(solutionMass({concentration:1,unit:'% m/v',volume:100,volumeUnit:'mL',mw:0,purity:50}),2));
+test('dilución conserva volumen y rechaza concentración inalcanzable',()=>{assert.deepEqual(dilution(100,10,100),{stock:10,solvent:90});assert.throws(()=>dilution(10,100,100));});
+test('mezcla Q5: 8 muestras + NTC + 10% exceso; molde aparte',()=>{const p=protocols.find(p=>p.id==='q5');const m=masterMix({reactions:8,controls:1,excess:10,volume:25},p.components);assert.equal(m.count,9);assert.equal(m.factor,9.9);assert.equal(m.mixPer,24);assert.equal(m.rows.find(r=>r.template).total,9);assert.equal(m.rows.at(-1).per,9);assert.ok(Math.abs(m.rows.filter(r=>!r.template).reduce((a,r)=>a+r.total,0)-237.6)<1e-8);});
+test('mezcla rechaza volúmenes negativos, fracciones de tubo y agua negativa',()=>{assert.throws(()=>masterMix({reactions:1.5,controls:0,volume:25,excess:0},[]));assert.throws(()=>masterMix({reactions:1,controls:0,volume:25,excess:0},[{name:'DNA',volume:26}]));assert.throws(()=>masterMix({reactions:1,controls:0,volume:25,excess:-1},[]));});
+test('centrífuga: conversión ida/vuelta',()=>{const g=rpmToRcf(8,12000);assert.ok(Math.abs(g-12879.36)<1e-8);assert.ok(Math.abs(rcfToRpm(8,g)-12000)<1e-8);});
+test('ratio de cloning y fórmula NEB de DNA',()=>{assert.equal(insertMass(50,5000,1000,3),30);assert.ok(Math.abs(dnaPmol(50,5000)-.015384615384615385)<1e-10);});
+test('programa PCR solo repite bloque cíclico; conservación no suma',()=>{const p=protocols.find(p=>p.id==='q5');assert.equal(thermalSeconds(p.thermal,30),1950);assert.throws(()=>validateProgram([{temp:120,seconds:10}],30));assert.throws(()=>validateProgram(p.thermal,2.5));});
+test('catálogo: ids únicos, fabricantes existentes, origen HTTPS y referencias sin pasos inventados',()=>{assert.equal(new Set(protocols.map(p=>p.id)).size,protocols.length);for(const p of protocols){assert.ok(sources.some(s=>s.id===p.manufacturer));assert.equal(new URL(p.source).protocol,'https:');if(p.status==='reference')assert.equal(p.steps.length,0);if(p.status==='reviewed')assert.ok(p.steps.length);}for(const m of media)if(m.grams)assert.ok(m.grams>0);});
