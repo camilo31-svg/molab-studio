@@ -1,5 +1,6 @@
 // Basic composition estimates, as documented by UGENE. These are not primer-design Tm.
 export function dnaTools(input){
+ if((String(input).match(/^>/gm)||[]).length>1)throw new Error('Pega una única secuencia FASTA; no se concatenan registros distintos.');
  const sequence=String(input).replace(/^>.*$/gm,'').replace(/\s/g,'').toUpperCase();
  if(!sequence||sequence.length>100000||/[^ACGT]/.test(sequence))throw new Error('Introduce entre 1 y 100000 bases A, C, G y T. Se admiten espacios y cabecera FASTA.');
  const reverse=[...sequence].reverse().join('');

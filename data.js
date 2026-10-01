@@ -1,8 +1,8 @@
-import {extractedProtocols} from './paper-protocols.js?v=2.1.0';
-import {curateProtocols} from './catalog.js?v=2.1.0';
-import {literature} from './literature-data.js?v=2.1.0';
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.1.0';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.1.0';
+import {extractedProtocols} from './paper-protocols.js?v=2.1.1';
+import {curateProtocols} from './catalog.js?v=2.1.1';
+import {literature} from './literature-data.js?v=2.1.1';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.1.1';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.1.1';
 export const checked='2026-10-01';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
