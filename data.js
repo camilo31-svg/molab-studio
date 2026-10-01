@@ -13,7 +13,7 @@ export const sources=[
  {id:'himedia',name:'HiMedia',short:'HM',color:'#44895d',url:'https://www.himedialabs.com/media/TD/M063A.pdf'},
  {id:'atcc',name:'ATCC',short:'AT',color:'#744799',url:'https://www.atcc.org/resources/culture-guides/animal-cell-culture-guide'}
 ];
-const s=(title,text,seconds=0,conditions='')=>({title,text,seconds,conditions});
+const s=(title,text,seconds=0,conditions='')=>({title,text,seconds:Number(seconds),conditions});
 const q5pdf='https://intl.neb.com/-/media/nebus/files/manuals/manuale0555.pdf?rev=aa908f8055e84c098ef15ac6fc1c7377';
 const dream='https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012702_DreamTaq_K1071_UG.pdf';
 const hifi='https://www.neb.com/en/-/media/nebus/files/manuals/manuale2621_e5520.pdf';
