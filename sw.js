@@ -1,5 +1,5 @@
-const CACHE='molab-v2.0.1';
-const FILES=['./','./index.html','./style.css?v=2.0.1','./app.js?v=2.0.1','./data.js?v=2.0.1','./calc.js?v=2.0.1','./bench.js?v=2.0.1','./bench-calc.js?v=2.0.1','./extended-data.js?v=2.0.1','./reviewed-assemblies.js?v=2.0.1','./literature-data.js?v=2.0.1','./icon.svg','./manifest.webmanifest'];
+const CACHE='molab-v2.1.0';
+const FILES=['./','./index.html','./style.css?v=2.1.0','./app.js?v=2.1.0','./data.js?v=2.1.0','./calc.js?v=2.1.0','./bench.js?v=2.1.0','./bench-calc.js?v=2.1.0','./extended-data.js?v=2.1.0','./reviewed-assemblies.js?v=2.1.0','./literature-data.js?v=2.1.0','./catalog.js?v=2.1.0','./paper-protocols.js?v=2.1.0','./sequence.js?v=2.1.0','./icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('molab-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{if(event.request.method!=='GET'||new URL(event.request.url).origin!==self.location.origin)return;event.respondWith(fetch(event.request,{cache:'no-cache'}).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(c=>c.put(event.request,copy));}return response;}).catch(()=>caches.match(event.request).then(r=>r||new Response('Sin conexión. Abre la app una vez con Internet.',{status:503}))));});

@@ -1,5 +1,8 @@
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.0.1';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.0.1';
+import {extractedProtocols} from './paper-protocols.js?v=2.1.0';
+import {curateProtocols} from './catalog.js?v=2.1.0';
+import {literature} from './literature-data.js?v=2.1.0';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.1.0';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.1.0';
 export const checked='2026-10-01';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
@@ -101,7 +104,7 @@ protocols.push(...reviewedAssemblies,...curatedProtocols,...indexedProtocols.fil
 compounds.forEach(c=>Object.assign(c,compoundDetails[c.id]||{}));
 compounds.push(...extraCompounds);
 media.push(...extraMedia);
-export const categories=[...new Set(protocols.map(p=>p.category))];
+
 // Parameters reviewed from the locally extracted manufacturer PDF, 2026-10-01.
 Object.assign(protocols.find(p=>p.id==='ref-10'),{
  status:'reviewed',duration:'~30 min',version:'M5519 · ficha de producto',pages:'1',
@@ -115,9 +118,12 @@ Object.assign(media.find(m=>m.id==='ms'),{grams:4.302,format:'Polvo · sales bas
 Object.assign(media.find(m=>m.id==='msvit'),{grams:4.4,format:'Polvo · medio con vitaminas',preparation:'Producto M5519: 4,4 g/L. pH según aplicación (ejemplo 5,7 ± 0,1). El medio debe alcanzar 121 °C durante al menos 15 min en autoclave validada. Suplementos termolábiles después; preparado a 2–8 °C.'});
 Object.assign(media.find(m=>m.id==='sabouraud'),{grams:80,format:'Polvo · M063A · agar al 3 %',description:'Variante de agar al 3 % para levaduras y mohos. Dosis específica M063A.',preparation:'M063A: 80 g/L. Disuelve con calor, esteriliza a 121 °C durante 15 min; enfría a 45–50 °C antes de verter. pH final 5,6 ± 0,2. No usar esta dosis para M063.'});
 protocols.find(p=>p.id==='western').duration='~5 h';
-// Related publications do not imply that their experimental conditions have been reviewed.
-for(const p of protocols.filter(p=>!p.bibliography)){
- const method=/GoldenBraid/.test(p.title)?'GoldenBraid':/Golden Gate/.test(p.title)?'Golden Gate':null;
- const related=indexedProtocols.filter(r=>r.category===p.category&&(!method||r.tags.includes(method))).slice(0,3);
- p.tips.push(...related.map(r=>({text:'Publicación relacionada; condiciones sin revisar: '+r.title,url:r.source,label:r.version,kind:'Paper'})));
-}
+// Bibliographic metadata remain attachments, never runnable protocol records.
+protocols.push(...extractedProtocols);
+const gb=protocols.find(p=>p.id==='gb-ecoli-2025');
+const gbWeb=extractedProtocols.find(p=>p.id==='gb-2021').externalTools[0];
+gb.steps[0].external=gbWeb;
+gb.externalTools=[gbWeb];
+gb.modifications=[{authors:'Cooke et al. (2025)',change:'Usan incubación de 18 h a 37 °C y un toolkit GB2.0 adaptado a E. coli. La receta utiliza ratio molar 1:1 y enzimas/stock específicos.',purpose:'Adaptar GB2.0 a partes y vectores de expresión en E. coli; no sustituye el ciclado de otras versiones.',url:gb.source}];
+protocols.splice(0,protocols.length,...curateProtocols(protocols,literature));
+export const categories=[...new Set(protocols.map(p=>p.category))];

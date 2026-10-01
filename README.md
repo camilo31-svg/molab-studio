@@ -7,7 +7,10 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2: 538 fichas, 189 de Cloning y 16 fuentes. 497 registros bibliográficos de PubMed obtenidos en 31 búsquedas dirigidas y deduplicados. 12 fichas tienen pasos revisados en fuente primaria; el resto son documentos o publicaciones relacionadas, no recetas listas para ejecutar.
+- Catálogo v2.1: 21 métodos agrupados y 28 versiones con pasos, recetas y condiciones extraídos de fuentes primarias. Los registros bibliográficos y documentos sin receta se excluyen de las tarjetas. Los metadatos relacionados se anexan por método en Bibliografía; el índice de 497 registros se conserva para trazabilidad.
+- Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
+- Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
+- Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación.
@@ -20,7 +23,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 
 ## Banco de trabajo v2
 
-En Cálculos → Banco de trabajo: stocks con balance del predisolvente, constructor de buffers/medios, diluciones seriadas, Neubauer/viabilidad/siembra y duplicación, conteo manual de colonias y células sobre imagen, calibración de distancias, placas de 6/12/24/96/384 pozos con etiquetas y CSV, multicronómetros, curva patrón lineal, contadores por clase, DNA/complementaria/traducción/GC/Tm corta/A260, inventario por lote y agenda con exportación ICS.
+En Cálculos → Banco de trabajo: stocks con balance del predisolvente, constructor de buffers/medios, diluciones seriadas, Neubauer/viabilidad/siembra y duplicación, conteo manual de colonias y células sobre imagen, calibración de distancias, placas de 6/12/24/96/384 pozos con etiquetas y CSV, multicronómetros, curva patrón lineal, contadores por clase, reverse, complement, reverse complement de DNA, GC, Tm estimada y enlace a NCBI BLAST, inventario por lote y agenda con exportación ICS.
 
 Inspiración funcional: [Lab Laps](https://www.lablaps.com/). Implementación propia: sin copiar código, interfaz o recursos. El conteo es manual; no incluye detección por IA, interpretación clínica ni sincronización cloud. Los datos e imágenes permanecen locales; las imágenes y marcas no persisten tras recargar (exportar PNG/CSV). Los temporizadores recuperan la hora de vencimiento, pero el navegador puede suspender los avisos en segundo plano.
 
@@ -45,7 +48,7 @@ Start inicia la guía y sus temporizadores, sin conectarse al termociclador. Rev
 
 ## Fuentes y cobertura
 
-Los documentos se enlazan desde sus sitios oficiales. `data.js` identifica origen, versión, páginas, estado y fecha de revisión. El catálogo es **inicial y no exhaustivo**: no se afirma haber indexado todos los protocolos, fabricantes, papers, redes sociales o medios existentes. Las fichas pendientes no habilitan ejecución ni cálculos de cantidades no verificadas. Los resúmenes son breves y no sustituyen los manuales completos.
+Los documentos se enlazan desde sus sitios oficiales. `data.js` identifica origen, versión, páginas, estado y fecha de revisión. El catálogo es **inicial y no exhaustivo**: no se afirma haber indexado todos los protocolos, fabricantes, papers, redes sociales o medios existentes. Las entradas sin pasos extraídos no se muestran como protocolos. Las publicaciones relacionadas son metadatos, y sus modificaciones solo se describen cuando se ha revisado el texto completo. Los resúmenes son breves y no sustituyen los manuales completos.
 
 Las condiciones de PCR que dependen de Tm, longitud y molde se marcan como valores iniciales editables. Q5 se basa en E0555 v5.0 (07/2025), DreamTaq en MAN0012702 Rev. B.00, GoTaq en TM318 (10/2024), NEBuilder en E2621/E5520, Western blot en Bulletin 7431 y Quick-DNA Plus en su protocolo rápido v1.3.0.
 
