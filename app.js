@@ -1,7 +1,7 @@
-import {protocols as baseProtocols,sources,media,compounds,checked} from './data.js?v=2.0.0';
-import {solutionMass,dilution,masterMix,rpmToRcf,rcfToRpm,insertMass,dnaPmol,thermalSeconds,validateProgram,positive,integer,expandThermal} from './calc.js?v=2.0.0';
-import {renderTools,bindTools,stopBenchTick,reagentCard} from './bench.js?v=2.0.0';
-import {literatureSearches} from './literature-data.js?v=2.0.0';
+import {protocols as baseProtocols,sources,media,compounds,checked} from './data.js?v=2.0.1';
+import {solutionMass,dilution,masterMix,rpmToRcf,rcfToRpm,insertMass,dnaPmol,thermalSeconds,validateProgram,positive,integer,expandThermal} from './calc.js?v=2.0.1';
+import {renderTools,bindTools,stopBenchTick,reagentCard} from './bench.js?v=2.0.1';
+import {literatureSearches} from './literature-data.js?v=2.0.1';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safeURL=u=>{try{const x=new URL(u);return ['https:','http:'].includes(x.protocol)?e(x.href):'#';}catch{return '#';}};
