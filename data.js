@@ -95,3 +95,16 @@ export const compounds=[
  {id:'nahco3',name:'Bicarbonato de sodio',formula:'NaHCO₃',mw:84.01}
 ];
 export const categories=[...new Set(protocols.map(p=>p.category))];
+// Parameters reviewed from the locally extracted manufacturer PDF, 2026-10-01.
+Object.assign(protocols.find(p=>p.id==='ref-10'),{
+ status:'reviewed',duration:'~30 min',version:'M5519 · ficha de producto',pages:'1',
+ description:'Medio vegetal basal con macroelementos, microelementos y vitaminas. El producto M5519 requiere 4,4 g/L; suplementos según cultivo.',
+ mechanism:'Aporta nutrientes minerales y vitaminas al explante. Los reguladores de crecimiento y agentes gelificantes dependen del sistema vegetal.',
+ assumptions:'Usa la dosis exacta de M5519. El pH 5,7 ± 0,1 es un ejemplo del fabricante. Los suplementos termolábiles se añaden después de la esterilización.',
+ steps:[s('Preparar agua','Mide aproximadamente 90 % del volumen final; usa un recipiente del doble de capacidad.'),s('Disolver polvo','Añade M5519 a 4,4 g/L mientras agitas. Enjuaga el envase y reúne el líquido.'),s('Suplementar','Añade los suplementos apropiados para tu cultivo.'),s('Ajustar pH','Ajusta al pH validado, por ejemplo 5,7 ± 0,1.'),s('Completar volumen','Añade agua hasta volumen final. Si hay gelificante, calienta hasta claridad.'),s('Esterilizar','Distribuye según aplicación y usa autoclave validada; el medio debe alcanzar estas condiciones.',900,'121 °C · 15 psi'),s('Terminar','Añade componentes termolábiles asépticamente tras esterilizar. Almacena preparado según ficha.',0,'2–8 °C')],
+ tips:[{text:'No preparar concentrado: pueden precipitar sales.',url:'https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/361/537/m5519pis.pdf',label:'Ficha M5519'}]
+});
+Object.assign(media.find(m=>m.id==='ms'),{grams:4.302,format:'Polvo · sales basales',preparation:'Producto 56740C: 4,302 g/L. Disuelve en 80–90 % del volumen de agua a 15–30 °C; añade suplementos compatibles según ficha.'});
+Object.assign(media.find(m=>m.id==='msvit'),{grams:4.4,format:'Polvo · medio con vitaminas',preparation:'Producto M5519: 4,4 g/L. pH según aplicación (ejemplo 5,7 ± 0,1). El medio debe alcanzar 121 °C durante al menos 15 min en autoclave validada. Suplementos termolábiles después; preparado a 2–8 °C.'});
+Object.assign(media.find(m=>m.id==='sabouraud'),{grams:80,format:'Polvo · M063A · agar al 3 %',description:'Variante de agar al 3 % para levaduras y mohos. Dosis específica M063A.',preparation:'M063A: 80 g/L. Disuelve con calor, esteriliza a 121 °C durante 15 min; enfría a 45–50 °C antes de verter. pH final 5,6 ± 0,2. No usar esta dosis para M063.'});
+protocols.find(p=>p.id==='western').duration='~5 h';

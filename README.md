@@ -7,13 +7,13 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo inicial de 21 fichas de 12 fuentes oficiales: 6 protocolos con parámetros revisados desde PDF y 15 referencias pendientes de estructurar.
+- Catálogo inicial de 21 fichas de 12 fuentes oficiales: 7 protocolos con parámetros revisados desde PDF y 14 referencias pendientes de estructurar.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación.
 - Ejecución guiada con siguiente/anterior, condiciones, cronómetros, reanudación y registro del experimento.
 - Soluciones molares, masa/volumen, pureza, diluciones, DNA molar, ratios de cloning, RPM/RCF y ΔΔCt.
-- 13 referencias de medios agrupadas en microbiológicos, hongos, plantas y células animales/humanas. Ocho dosis de polvo comercial revisadas; las demás conservan enlace a su formulación y no generan cantidades inventadas.
+- 13 referencias de medios agrupadas en microbiológicos, hongos, plantas y células animales/humanas. Once dosis de polvo comercial revisadas; las demás conservan enlace a su formulación y no generan cantidades inventadas.
 - Compuestos personalizados con sal/hidratación y masa molecular editable.
 - Exportación/importación de copia personal, CSV de master mix y JSON de registros. Impresión.
 - PWA con acceso sin conexión después de la primera carga (los documentos externos requieren Internet).

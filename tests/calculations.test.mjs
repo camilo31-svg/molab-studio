@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {solutionMass,dilution,masterMix,rpmToRcf,rcfToRpm,insertMass,dnaPmol,thermalSeconds,validateProgram} from '../calc.js';
+import {solutionMass,dilution,masterMix,rpmToRcf,rcfToRpm,insertMass,dnaPmol,thermalSeconds,validateProgram,expandThermal} from '../calc.js';
 import {protocols,media,sources} from '../data.js';
 test('masa molar: 100 mL NaCl 100 mM = 0.5844 g',()=>assert.ok(Math.abs(solutionMass({concentration:100,unit:'mM',volume:100,volumeUnit:'mL',mw:58.44,purity:100})-.5844)<1e-10));
 test('m/v y pureza se calculan sin usar masa molar',()=>assert.equal(solutionMass({concentration:1,unit:'% m/v',volume:100,volumeUnit:'mL',mw:0,purity:50}),2));
@@ -10,4 +10,5 @@ test('mezcla rechaza volúmenes negativos, fracciones de tubo y agua negativa',(
 test('centrífuga: conversión ida/vuelta',()=>{const g=rpmToRcf(8,12000);assert.ok(Math.abs(g-12879.36)<1e-8);assert.ok(Math.abs(rcfToRpm(8,g)-12000)<1e-8);});
 test('ratio de cloning y fórmula NEB de DNA',()=>{assert.equal(insertMass(50,5000,1000,3),30);assert.ok(Math.abs(dnaPmol(50,5000)-.015384615384615385)<1e-10);});
 test('programa PCR solo repite bloque cíclico; conservación no suma',()=>{const p=protocols.find(p=>p.id==='q5');assert.equal(thermalSeconds(p.thermal,30),1950);assert.throws(()=>validateProgram([{temp:120,seconds:10}],30));assert.throws(()=>validateProgram(p.thermal,2.5));});
+test('ciclos se expanden en orden real sin agrupar desnaturalizaciones separadas',()=>{const p=protocols.find(p=>p.id==='q5');const steps=expandThermal(p.thermal,2);assert.deepEqual(steps.map(p=>p.temp),[98,98,65,72,98,65,72,72,4]);assert.deepEqual(steps.filter(p=>p.repeat).map(p=>p.cycle),[1,1,1,2,2,2]);});
 test('catálogo: ids únicos, fabricantes existentes, origen HTTPS y referencias sin pasos inventados',()=>{assert.equal(new Set(protocols.map(p=>p.id)).size,protocols.length);for(const p of protocols){assert.ok(sources.some(s=>s.id===p.manufacturer));assert.equal(new URL(p.source).protocol,'https:');if(p.status==='reference')assert.equal(p.steps.length,0);if(p.status==='reviewed')assert.ok(p.steps.length);}for(const m of media)if(m.grams)assert.ok(m.grams>0);});

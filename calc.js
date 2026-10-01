@@ -29,3 +29,8 @@ export function insertMass(vectorMass,vectorBp,insertBp,ratio) {return positive(
 export function dnaPmol(mass,bp) {return positive(mass,'Masa')*1000/(positive(bp,'Longitud')*650);}
 export function thermalSeconds(program,cycles) {return program.reduce((s,p)=>s+nonnegative(p.seconds,'Duración')*(p.repeat?integer(cycles,'Ciclos'):1),0);}
 export function validateProgram(program,cycles) {integer(cycles,'Ciclos'); if(cycles>100) throw new Error('Utiliza 100 ciclos o menos.'); for(const p of program){const t=Number(p.temp); if(!Number.isFinite(t)||t<0||t>110)throw new Error('La temperatura debe estar entre 0 y 110 °C.');nonnegative(p.seconds,'Duración');} return true;}
+export function expandThermal(program,cycles) {
+  validateProgram(program,cycles);const phases=[];
+  for(let i=0;i<program.length;){if(!program[i].repeat){phases.push({...program[i]});i++;continue;}let j=i;while(j<program.length&&program[j].repeat)j++;for(let cycle=1;cycle<=cycles;cycle++)for(const phase of program.slice(i,j))phases.push({...phase,cycle});i=j;}
+  return phases;
+}
