@@ -1,0 +1,24 @@
+import {blankPersonal,personalData,validatePersonal,copy} from './personal-data.js?v=2.4.0';
+const sets=['favorites','compoundFavorites','mediaFavorites'],arrays=['customProtocols','customCompounds','runs'],maps=['notes','configs','bench'];
+const key=(field,id='')=>JSON.stringify([field,id]);
+const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+export const emptyDocument=()=>({format:'molab-sync-v1',records:{}});
+function flat(data){const out=new Map();for(const field of sets)for(const id of data[field]||[])out.set(key(field,id),true);for(const field of arrays)for(const x of data[field]||[])out.set(key(field,x.id),copy(x));for(const field of maps)for(const [id,x] of Object.entries(data[field]||{}))out.set(key(field,id),copy(x));out.set(key('activeRun'),copy(data.activeRun??null));return out;}
+function selected(versions){return versions.slice().sort((a,b)=>b.at.localeCompare(a.at)||b.device.localeCompare(a.device)||JSON.stringify(b.v).localeCompare(JSON.stringify(a.v)))[0];}
+function dominates(a,b){return Object.keys({...a,...b}).every(k=>(a[k]||0)>=(b[k]||0))&&Object.keys(a).some(k=>(a[k]||0)>(b[k]||0));}
+function eventId(e){return JSON.stringify(Object.entries(e.v).sort(([a],[b])=>a.localeCompare(b)));}
+export function mergeDocuments(...docs){const out=emptyDocument();for(const d of docs)for(const [k,events] of Object.entries(d.records)){const entries=[...(out.records[k]||[]),...events],unique=new Map();for(const ev of entries){const id=eventId(ev),old=unique.get(id);if(old&&!equal(old,ev))throw new Error('Versiones incompatibles con el mismo identificador.');unique.set(id,copy(ev));}const all=[...unique.values()];out.records[k]=all.filter(e=>!all.some(other=>dominates(other.v,e.v))).sort((a,b)=>eventId(a).localeCompare(eventId(b)));}return out;}
+export function captureChanges(document,data,device,now=new Date().toISOString()){
+ const out=copy(document),before=flat(materialize(document)),after=flat(personalData(data));
+ for(const k of new Set([...before.keys(),...after.keys()])){if(equal(before.get(k),after.get(k)))continue;const versions=out.records[k]||[],v={};for(const ev of versions)for(const [id,n] of Object.entries(ev.v))v[id]=Math.max(v[id]||0,n);v[device]=(v[device]||0)+1;out.records[k]=[{v,device,at:now,deleted:!after.has(k),value:after.has(k)?after.get(k):null}];}
+ return out;
+}
+export function materialize(document){const data=blankPersonal();for(const [k,events] of Object.entries(document.records)){const [field,id]=JSON.parse(k),winner=selected(events);if(winner.deleted)continue;if(sets.includes(field)){if(winner.value)data[field].push(id);}else if(arrays.includes(field))data[field].push(copy(winner.value));else if(maps.includes(field))data[field][id]=copy(winner.value);else if(field==='activeRun')data.activeRun=copy(winner.value);}return data;}
+export function syncConflicts(document){return Object.entries(document.records).filter(([k,events])=>events.length>1&&!sets.includes(JSON.parse(k)[0])).map(([k,events])=>({key:k,field:JSON.parse(k)[0],id:JSON.parse(k)[1],versions:copy(events),winner:copy(selected(events))}));}
+export function resolveConflict(document,k,index,device){const events=document.records[k];if(!events?.[index])throw new Error('Esta copia ya no está disponible.');const out=copy(document),chosen=events[index],v={};for(const ev of events)for(const [id,n] of Object.entries(ev.v))v[id]=Math.max(v[id]||0,n);v[device]=(v[device]||0)+1;out.records[k]=[{...copy(chosen),device,v,at:new Date().toISOString()}];return out;}
+export function validateDocument(document){
+ if(document?.format!=='molab-sync-v1'||!document.records||typeof document.records!=='object'||Array.isArray(document.records))throw new Error('El archivo remoto no es una sesión de Molab.');
+ if(Object.keys(document.records).length>50000)throw new Error('La sesión supera el límite de registros.');
+ for(const [k,events] of Object.entries(document.records)){let path;try{path=JSON.parse(k);}catch{throw new Error('Clave de sesión incorrecta.');}if(!Array.isArray(path)||path.length!==2||!['activeRun',...sets,...arrays,...maps].includes(path[0])||typeof path[1]!=='string'||['__proto__','constructor','prototype'].includes(path[1]))throw new Error('Campo remoto no permitido.');if(!Array.isArray(events)||!events.length||events.length>50)throw new Error('Lista de versiones incorrecta.');for(const ev of events){if(!ev||!ev.v||typeof ev.v!=='object'||Array.isArray(ev.v)||typeof ev.device!=='string'||typeof ev.at!=='string'||!Number.isFinite(Date.parse(ev.at))||typeof ev.deleted!=='boolean'||!Object.hasOwn(ev.v,ev.device))throw new Error('Metadatos de sesión inválidos.');for(const [device,n] of Object.entries(ev.v))if(['__proto__','constructor','prototype'].includes(device)||!Number.isSafeInteger(n)||n<1)throw new Error('Contador de sesión inválido.');const test=emptyDocument();test.records[k]=[ev];validatePersonal(materialize(test));}}
+ return copy(document);
+}

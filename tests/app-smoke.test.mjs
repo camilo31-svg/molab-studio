@@ -9,16 +9,20 @@ import * as experiment from '../experiment.js';
 import {reagentCard} from '../bench.js';
 import {literatureSearches} from '../literature-data.js';
 import {restrictionView,bindRestriction} from '../restriction.js';
-import {defaultDigest,digestText,digestCalculation} from '../restriction-calc.js';
-import {digestWorkbook,programWorkbook} from '../excel.js';
+import {defaultDigest,digestText,digestCalculation,restrictionVendor,importedSamples} from '../restriction-calc.js';
+import {restrictionVendors} from '../restriction-data.js';
+import {digestWorkbook,programWorkbook,readSampleWorkbook,sampleTemplate} from '../excel.js';
 import {programText,programCSV} from '../program-export.js';
+import {blankPersonal,validatePersonal} from '../personal-data.js';
+const restrictionSource=(await readFile(new URL('../restriction.js',import.meta.url),'utf8')).replace(/^import .+;$/gm,'').replace(/^export /gm,'');
 const source=(await readFile(new URL('../app.js',import.meta.url),'utf8')).replace(/^import .+;$/gm,'');
-function boot(hash){
+function boot(hash,{actualRestriction=false}={}){
  const nodes=new Map();
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'1',dataset:{},classList:{add(){},remove(){},toggle(){}},showModal(){},close(){},focus(){}});return nodes.get(id);};
  const document={querySelector:selector=>selector.startsWith('#')?node(selector):null,querySelectorAll:()=>[],addEventListener(){},createElement:()=>({click(){}})};
  document.documentElement={dataset:{}};
- const context=vm.createContext({...data,...calculators,...catalog,...experiment,reagentCard,literatureSearches,restrictionView,bindRestriction:()=>{},defaultDigest,digestText,digestCalculation,digestWorkbook,programWorkbook,programText,programCSV,stopBenchTick(){},baseProtocols:data.protocols,document,window:{addEventListener(){},print(){}},location:{hash},navigator:{},localStorage:{getItem:()=>null,setItem(){}},crypto,URL,Blob,setTimeout:()=>0,clearTimeout(){},setInterval:()=>0,clearInterval(){},fetch:()=>Promise.reject(new Error('Offline test'))});
+ const context=vm.createContext({...data,...calculators,...catalog,...experiment,reagentCard,literatureSearches,restrictionView,bindRestriction:()=>{},defaultDigest,digestText,digestCalculation,digestWorkbook,programWorkbook,programText,programCSV,blankPersonal,validatePersonal,PersonalSession:class{constructor(){this.access={};this.status={message:'Local'};}start(){}changed(){}},sessionsView:()=>'<section class="panel">Sesión y sincronización con repositorio privado. Favoritos, notas y configuraciones.</section>',bindSessions(){},stopBenchTick(){},baseProtocols:data.protocols,document,window:{addEventListener(){},print(){}},location:{hash},navigator:{},localStorage:{getItem:()=>null,setItem(){}},crypto,URL,Blob,setTimeout:()=>0,clearTimeout(){},setInterval:()=>0,clearInterval(){},fetch:()=>Promise.reject(new Error('Offline test'))});
+ if(actualRestriction){Object.assign(context,{restrictionVendors,restrictionVendor,importedSamples,readSampleWorkbook,sampleTemplate});document.querySelectorAll=selector=>{if(['[data-digest]','#app input,#app select'].includes(selector)){return ['vendor','buffer','volume','target','material','mode'].map(field=>{const control=node('digest:'+field);control.dataset={digest:field};return control;});}return [];};vm.runInContext(restrictionSource,context);}
  vm.runInContext(source,context,{timeout:1000});return {context,nodes};
 }
 test('client boots on every main screen without an exception',()=>{for(const route of ['protocols','favorites','calculators','media','notebook','sources','detail/q5','run']){const {nodes}=boot('#'+route);assert.ok(nodes.get('#app').innerHTML.length>100,route);assert.ok(nodes.get('#nav').innerHTML.includes('Protocolos'));}});
@@ -36,7 +40,7 @@ test('theme can be toggled and material filters do not show an incompatible meth
 });
 test('run snapshot uses modified reagent instructions and records material and source',()=>{
  const {context,nodes}=boot('#detail/genejet-plasmid');vm.runInContext("state.detailTab='config';render();saved.configs[state.id]=initialConfig(getProtocol());saved.configs[state.id].reagents.find(r=>r.key==='elu').amount=35;saved.configs[state.id].edited=true;startProtocol(getProtocol());",context);
- const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.3.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
+ const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.4.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
  vm.runInContext('exportExperiment(saved.activeRun.id)',context);assert.match(nodes.get('#modal').innerHTML,/data-experiment-format="csv"/);
 });
 test('restriction configuration uses the selected manufacturer and preserves its guided snapshot',()=>{
@@ -53,4 +57,28 @@ test('all notebook export buttons dispatch the corresponding complete record for
  for(const button of buttons)button.onclick();const result=vm.runInContext('downloaded',context);
  assert.equal(result.length,4);assert.match(result[0].name,/\.md$/);assert.match(result[1].body,/# Exportación de prueba/);assert.match(result[2].body,/"Elution Buffer","50","400","µL"/);assert.equal(JSON.parse(result[3].body).config.reagents.find(r=>r.key==='elu').amount,50);
 });
+
+test('restriction controls keep their handlers in the calculator and change every vendor buffer list',()=>{
+ const {context,nodes}=boot('#calculators/restriction',{actualRestriction:true});
+ assert.match(nodes.get('#app').innerHTML,/rCutSmart/);
+ for(const [vendor,buffer,excluded] of [['thermo','FastDigest Green','NEBuffer r1.1'],['promega','4-CORE A','FastDigest Green'],['neb','rCutSmart','MULTI-CORE']]){
+  const control=nodes.get('digest:vendor');control.value=vendor;control.oninput();
+  assert.equal(vm.runInContext('saved.bench.restriction.vendor',context),vendor);
+  assert.match(nodes.get('#app').innerHTML,new RegExp(buffer));assert.ok(!nodes.get('#app').innerHTML.includes(excluded));
+ }
+ const volume=nodes.get('digest:volume');volume.value='75';volume.oninput();assert.equal(vm.runInContext('saved.bench.restriction.volume',context),'75');
+});
+test('configured PCR is saved as a distinct personal protocol with its original source and edits',()=>{
+ const {context,nodes}=boot('#detail/q5');vm.runInContext("var c=clone(configFor(getProtocol()));c.reactions=16;c.cycles=12;c.thermal[0].temp=95;saveConfiguredProtocol(getProtocol(),c);",context);
+ vm.runInContext("$('#preset-name').value='PCR de mi laboratorio';",context);nodes.get('#preset-form').onsubmit({preventDefault(){}});
+ const p=vm.runInContext('saved.customProtocols[0]',context),c=vm.runInContext('saved.configs[saved.customProtocols[0].id]',context);
+ assert.equal(p.title,'PCR de mi laboratorio');assert.equal(p.origin,'personal');assert.equal(p.family,p.id);assert.equal(c.cycles,12);assert.equal(c.thermal[0].temp,95);assert.equal(c.reactions,16);assert.equal(p.source,data.protocols.find(x=>x.id==='q5').source);
+});
+test('saved digestion presets reopen their own concentrations, enzymes and buffer',()=>{
+ const {context,nodes}=boot('#calculators/restriction');vm.runInContext("var digest=defaultDigest('thermo');digest.buffer='green';digest.target=750;digest.samples=[{name:'Stock propio',concentration:125}];restrictionContext().savePreset(digest,digestCalculation(digest));",context);
+ vm.runInContext("$('#preset-name').value='Digestión personal FastDigest';",context);nodes.get('#preset-form').onsubmit({preventDefault(){}});
+ vm.runInContext("saved.bench.restriction=defaultDigest('neb');state.page='detail';state.id=saved.customProtocols[0].id;state.detailTab='config';render();",context);
+ assert.match(nodes.get('#app').innerHTML,/FastDigest Green/);assert.match(nodes.get('#app').innerHTML,/Stock propio/);assert.equal(vm.runInContext('currentDigest().target',context),750);assert.equal(vm.runInContext('currentDigest().buffer',context),'green');
+});
+test('personal repository and session have their own navigation entries',()=>{for(const hash of ['#myprotocols','#sessions']){const {nodes}=boot(hash);assert.match(nodes.get('#nav').innerHTML,/Mis protocolos/);assert.match(nodes.get('#nav').innerHTML,/Sesión/);assert.ok(nodes.get('#app').innerHTML.length>100);}});
 

@@ -7,7 +7,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2.3.0: 37 métodos agrupados y 75 procedimientos con receta: 55 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
+- Catálogo v2.4.0: 37 métodos agrupados y 75 procedimientos con receta: 55 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
 - Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
 - Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
 - Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
@@ -17,6 +17,9 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 - Cantidades por etapa editables con totales por muestra; ratios ligados al volumen real medido del lisado. Selección de material en cada experimento.
 - Versión visible y modo claro/oscuro persistente con preferencia inicial del sistema.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
+- Mis protocolos: guarda una configuración modificada con reactivos, muestras, programa, pasos y fuente; las digestiones conservan su propio proveedor, enzimas, buffer y concentraciones al reabrirlas.
+- Sesión: sincronización opcional entre dispositivos mediante un repositorio privado de GitHub. Combina favoritos, notas, configuraciones, protocolos, compuestos, banco de trabajo y cuaderno; conserva las copias de ediciones simultáneas para resolverlas expresamente.
+- Cambio de fabricante en digestiones corregido: los controles del cálculo general ya no sustituyen los de restricción. Los desplegables muestran únicamente buffers y enzimas del proveedor seleccionado.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación. Descarga independiente en texto/Markdown, CSV, Excel y gráfica SVG; también se exportan condiciones no térmicas.
 - Competentes de A. tumefaciens desde placa (MOG301/EHA105/LBA4404) y electroporación; A. rhizogenes K599 con CaCl₂ y transformación por congelación/choque. Especies filtrables y bibliografía anexa; GV3101 mantiene su propia versión.
@@ -35,7 +38,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 
 En Cálculos → Banco de trabajo: stocks con balance del predisolvente, constructor de buffers/medios, diluciones seriadas, Neubauer/viabilidad/siembra y duplicación, conteo manual de colonias y células sobre imagen, calibración de distancias, placas de 6/12/24/96/384 pozos con etiquetas y CSV, multicronómetros, curva patrón lineal, contadores por clase, reverse, complement, reverse complement de DNA, GC, Tm estimada y enlace a NCBI BLAST, inventario por lote y agenda con exportación ICS.
 
-Inspiración funcional: [Lab Laps](https://www.lablaps.com/). Implementación propia: sin copiar código, interfaz o recursos. El conteo es manual; no incluye detección por IA, interpretación clínica ni sincronización cloud. Los datos e imágenes permanecen locales; las imágenes y marcas no persisten tras recargar (exportar PNG/CSV). Los temporizadores recuperan la hora de vencimiento, pero el navegador puede suspender los avisos en segundo plano.
+Inspiración funcional: [Lab Laps](https://www.lablaps.com/). Implementación propia: sin copiar código, interfaz o recursos. El conteo es manual; no incluye detección por IA ni interpretación clínica. Las imágenes y marcas no persisten tras recargar (exportar PNG/CSV); los datos del banco que se guardan sí se incluyen en la sesión. Los temporizadores recuperan la hora de vencimiento, pero el navegador puede suspender los avisos en segundo plano.
 
 Los favoritos, notas y registros v1 se conservan. La copia personal v1 incluye también los nuevos datos de banco; importar/exportar permite trasladarlos entre dispositivos. La app no controla el equipo de laboratorio.
 
@@ -52,7 +55,17 @@ Abre `http://127.0.0.1:4173`. El sitio sirve archivos estáticos; puede desplega
 
 ## Datos personales
 
-Favoritos, notas, configuraciones, protocolos propios y experimentos se almacenan exclusivamente en `localStorage` de este navegador. No hay cuentas, servidor de usuarios ni sincronización automática. Exporta una copia e impórtala en tu móvil para trasladar tus datos. No se publican notas personales en GitHub. Los límites del navegador y el borrado de sus datos pueden eliminar la copia local.
+Los datos siguen guardándose en `localStorage` sin alterar la clave anterior `molab-personal-v1`. En **Sesión** puedes conectar un repositorio **privado**, distinto del repositorio público que aloja la app, para sincronizarlos automáticamente al terminar de editar, al volver a la app y cada minuto mientras está abierta. Sin conexión siguen disponibles localmente.
+
+1. Crea un repositorio privado como `usuario/molab-datos` e inicialízalo con README.
+2. Crea un token fine-grained limitado a ese repositorio con **Contents: Read and write**. [Guía oficial](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+3. Introduce el repositorio y token en **Sesión**. Conecta el mismo repositorio en cada dispositivo; puedes usar tokens distintos.
+
+El token solo se envía a `https://api.github.com`; por defecto se conserva en `sessionStorage` durante la pestaña. La casilla **Recordar acceso** lo conserva en `localStorage` del dispositivo. No se incluye en exportaciones personales, documentos de sincronización ni código publicado. Cerrar sesión elimina el acceso guardado en ese dispositivo, conservando los datos locales y remotos. Para revocar el token, utiliza GitHub.
+
+La app verifica que el repositorio sea privado antes de intercambiar el archivo `molab/personal-v1.json`. La API usa el SHA para actualizarlo y reintenta tras colisiones. Cada dato tiene un vector de versiones: las modificaciones independientes se combinan y las modificaciones simultáneas del mismo dato conservan sus copias en **Sesión → Copias de cambios simultáneos**. Puedes descargarlas antes de elegir. El repositorio conserva además el historial Git. Los datos se guardan en JSON dentro del repositorio privado; esta versión no añade cifrado de extremo a extremo. El archivo admite hasta 5 MB.
+
+Esta versión requiere configurar el acceso en la app: la conexión de GitHub del asistente no funciona como sesión de usuarios de Molab ni se incrusta en el sitio público. Las pruebas de sincronización usan una API simulada; no se ha conectado un token personal real del usuario durante el desarrollo. Los límites del navegador y borrar sus datos pueden eliminar la copia local: exporta copias cuando corresponda.
 
 Start inicia la guía y sus temporizadores, sin conectarse al termociclador. Revisa parámetros y programa el equipo por separado. Los tiempos térmicos no incluyen rampas. Los temporizadores se recuperan por hora de finalización, pero una pestaña cerrada no emite alarmas en segundo plano.
 

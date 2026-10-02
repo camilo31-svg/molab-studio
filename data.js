@@ -1,12 +1,12 @@
-import {extractedProtocols} from './paper-protocols.js?v=2.3.0';
-import {curateProtocols} from './catalog.js?v=2.3.0';
-import {literature} from './literature-data.js?v=2.3.0';
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.3.0';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.3.0';
-import {commercialProtocols} from './commercial-protocols.js?v=2.3.0';
-import {extractionProtocols} from './extraction-protocols.js?v=2.3.0';
-import {agrobacteriumProtocols} from './agrobacterium-protocols.js?v=2.3.0';
-import {restrictionProtocols} from './restriction-data.js?v=2.3.0';
+import {extractedProtocols} from './paper-protocols.js?v=2.4.0';
+import {curateProtocols} from './catalog.js?v=2.4.0';
+import {literature} from './literature-data.js?v=2.4.0';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.4.0';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.4.0';
+import {commercialProtocols} from './commercial-protocols.js?v=2.4.0';
+import {extractionProtocols} from './extraction-protocols.js?v=2.4.0';
+import {agrobacteriumProtocols} from './agrobacterium-protocols.js?v=2.4.0';
+import {restrictionProtocols} from './restriction-data.js?v=2.4.0';
 export const checked='2026-10-02';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
