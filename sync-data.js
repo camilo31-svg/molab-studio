@@ -1,4 +1,4 @@
-import {blankPersonal,personalData,validatePersonal,copy} from './personal-data.js?v=2.5.1';
+import {blankPersonal,personalData,validatePersonal,copy} from './personal-data.js?v=2.6.0';
 const sets=['favorites','compoundFavorites','mediaFavorites'],arrays=['customProtocols','customCompounds','runs'],maps=['notes','configs','bench'];
 const key=(field,id='')=>JSON.stringify([field,id]);
 const equal=(a,b)=>JSON.stringify(a)===JSON.stringify(b);

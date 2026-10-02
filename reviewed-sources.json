@@ -1,5 +1,5 @@
 {
-  "version": "2.5.1",
+  "version": "2.6.0",
   "reviewedAt": "2026-10-02",
   "exhaustive": false,
   "methods": 37,
@@ -1137,5 +1137,227 @@
       "inputLimit": "",
       "review": "recipe-extracted-from-primary-source"
     }
-  ]
+  ],
+  "mediaFormulations": {
+    "reviewedAt": "2026-10-02",
+    "count": 29,
+    "catalogEntries": 30,
+    "guideOnly": [
+      "atccmedia"
+    ],
+    "recipes": [
+      {
+        "id": "lb",
+        "variant": "LB Miller · componentes individuales",
+        "components": 3,
+        "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/148/243/l3152inf.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "lb-agar",
+        "variant": "LB Miller agar 1,5 %",
+        "components": 4,
+        "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/148/243/l3152inf.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "luria",
+        "variant": "LB Luria · bajo en sal, 0,5 g/L NaCl",
+        "components": 3,
+        "source": "https://www.sigmaaldrich.com/US/en/technical-documents/protocol/cell-culture-and-cell-culture-analysis/plant-tissue-culture/pathology-media",
+        "additionalSources": []
+      },
+      {
+        "id": "macconkey",
+        "variant": "MacConkey · formulación M081 (agar 1,5 %)",
+        "components": 9,
+        "source": "https://www.himedialabs.com/media/TD/M081.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "sob",
+        "variant": "SOB · formulación H8032 / Barrick",
+        "components": 5,
+        "source": "https://barricklab.org/twiki/bin/view/Lab/ProtocolsRecipesSOB",
+        "additionalSources": []
+      },
+      {
+        "id": "soc",
+        "variant": "SOC · SOB Barrick + glucosa 0,4 %",
+        "components": 6,
+        "source": "https://barricklab.org/twiki/bin/view/Lab/ProtocolsRecipesSOB",
+        "additionalSources": []
+      },
+      {
+        "id": "tb",
+        "variant": "Terrific Broth · Tartoff / Hobbs, fosfato separado",
+        "components": 4,
+        "source": "https://static.igem.org/mediawiki/2016/0/0d/T--SDU-Denmark--iGEM_2016_SOP0031_v1_-_TB_Media.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "m9",
+        "variant": "M9 · sales 1X + glucosa 0,4 %",
+        "components": 7,
+        "source": "https://2022.igem.wiki/groningen/experiments",
+        "additionalSources": [
+          "https://www.sigmaaldrich.com/US/en/product/sigma/m6030"
+        ]
+      },
+      {
+        "id": "maltbroth",
+        "variant": "Caldo de malta · formulación M6409",
+        "components": 4,
+        "source": "https://www.sigmaaldrich.com/US/en/technical-documents/protocol/cell-culture-and-cell-culture-analysis/plant-tissue-culture/pathology-media",
+        "additionalSources": []
+      },
+      {
+        "id": "maltagar",
+        "variant": "Agar extracto de malta · formulación M6907",
+        "components": 5,
+        "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/341/310/m6907dat.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "czapek",
+        "variant": "Czapek-Dox caldo · formulación M076",
+        "components": 6,
+        "source": "https://www.himedialabs.com/media/TD/M076.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "cornmeal",
+        "variant": "Corn Meal Agar · DSMZ 191, agar 1 %",
+        "components": 2,
+        "source": "https://bacmedia.dsmz.de/medium/191",
+        "additionalSources": [
+          "https://bacmedia.dsmz.de/pdf/191?ccno=DSM+1491"
+        ]
+      },
+      {
+        "id": "sabouraud",
+        "variant": "Sabouraud dextrosa · agar clásico 1,5 %",
+        "components": 3,
+        "source": "https://www.himedialabs.com/media/TD/M063.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "malt-himedia",
+        "variant": "Malt Agar · 3 % malta, 2 % agar M253F",
+        "components": 2,
+        "source": "https://www.himedialabs.com/media/TD/M253F.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-0",
+        "variant": "Gamborg B5 · con vitaminas G398",
+        "components": 17,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-1",
+        "variant": "Gamborg B5 · sales basales G768",
+        "components": 13,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-2",
+        "variant": "Gamborg PRL-4-DM G359",
+        "components": 31,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-3",
+        "variant": "Gresshoff & Doy G371",
+        "components": 20,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-4",
+        "variant": "Hoagland modificado H353",
+        "components": 10,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-5",
+        "variant": "Heller H393",
+        "components": 13,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-6",
+        "variant": "Heller / White modificado H396",
+        "components": 14,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "plant-extra-7",
+        "variant": "Woody Plant · sales basales L154",
+        "components": 12,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "ms",
+        "variant": "Murashige & Skoog · sales basales",
+        "components": 13,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "msvit",
+        "variant": "Murashige & Skoog · sales y vitaminas clásicas",
+        "components": 18,
+        "source": "https://phytotechlab.com/media/documents/ProductLiterature/MediaFormulations.pdf",
+        "additionalSources": []
+      },
+      {
+        "id": "dmem",
+        "variant": "DMEM alto en glucosa · formulación basal 11965",
+        "components": 32,
+        "source": "https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.8.html",
+        "additionalSources": []
+      },
+      {
+        "id": "cell-extra-0",
+        "variant": "RPMI 1640 · formulación basal 11875",
+        "components": 40,
+        "source": "https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.114.html",
+        "additionalSources": []
+      },
+      {
+        "id": "cell-extra-1",
+        "variant": "IMDM · formulación basal 12440",
+        "components": 42,
+        "source": "https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.76.html",
+        "additionalSources": []
+      },
+      {
+        "id": "cell-extra-2",
+        "variant": "Ham F-12 · formulación basal 11765",
+        "components": 47,
+        "source": "https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.64.html",
+        "additionalSources": []
+      },
+      {
+        "id": "cell-extra-3",
+        "variant": "DMEM / F-12 1:1 · formulación basal 11320",
+        "components": 51,
+        "source": "https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.55.html",
+        "additionalSources": []
+      }
+    ],
+    "notes": [
+      "Las recetas basales no presuponen suplementos universales.",
+      "Las formas químicas no especificadas por la fuente requieren comprobar el producto.",
+      "IMDM: la tabla oficial de selenito presenta una discrepancia de hidratación y MM que se señala en la fila."
+    ]
+  }
 }

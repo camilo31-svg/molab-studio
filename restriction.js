@@ -1,6 +1,6 @@
-import {restrictionVendors} from './restriction-data.js?v=2.5.1';
-import {defaultDigest,restrictionVendor,digestCalculation,importedSamples,digestText} from './restriction-calc.js?v=2.5.1';
-import {readSampleWorkbook,sampleTemplate,digestWorkbook} from './excel.js?v=2.5.1';
+import {restrictionVendors} from './restriction-data.js?v=2.6.0';
+import {defaultDigest,restrictionVendor,digestCalculation,importedSamples,digestText} from './restriction-calc.js?v=2.6.0';
+import {readSampleWorkbook,sampleTemplate,digestWorkbook} from './excel.js?v=2.6.0';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const f=n=>n==null?'—':Number(n).toLocaleString('es-ES',{maximumFractionDigits:4});
 const select=(values,current)=>values.map(([id,name])=>`<option value="${esc(id)}" ${id===current?'selected':''}>${esc(name)}</option>`).join('');

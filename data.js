@@ -1,12 +1,12 @@
-import {extractedProtocols} from './paper-protocols.js?v=2.5.1';
-import {curateProtocols} from './catalog.js?v=2.5.1';
-import {literature} from './literature-data.js?v=2.5.1';
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.5.1';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.5.1';
-import {commercialProtocols} from './commercial-protocols.js?v=2.5.1';
-import {extractionProtocols} from './extraction-protocols.js?v=2.5.1';
-import {agrobacteriumProtocols} from './agrobacterium-protocols.js?v=2.5.1';
-import {restrictionProtocols} from './restriction-data.js?v=2.5.1';
+import {extractedProtocols} from './paper-protocols.js?v=2.6.0';
+import {curateProtocols} from './catalog.js?v=2.6.0';
+import {literature} from './literature-data.js?v=2.6.0';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.6.0';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.6.0';
+import {commercialProtocols} from './commercial-protocols.js?v=2.6.0';
+import {extractionProtocols} from './extraction-protocols.js?v=2.6.0';
+import {agrobacteriumProtocols} from './agrobacterium-protocols.js?v=2.6.0';
+import {restrictionProtocols} from './restriction-data.js?v=2.6.0';
 export const checked='2026-10-02';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
@@ -141,3 +141,9 @@ Object.assign(protocols.find(p=>p.id==='quickdna'),{category:'Extracción de ác
 protocols.push(...commercialProtocols,...extractionProtocols,...agrobacteriumProtocols,...restrictionProtocols);
 protocols.splice(0,protocols.length,...curateProtocols(protocols,literature));
 export const categories=[...new Set(protocols.map(p=>p.category))];
+
+// Formatos comerciales verificados durante la revisión de medios v2.6.
+for(const [id,code,dose] of [['plant-extra-0','G398',3.21],['plant-extra-1','G768',3.1],['plant-extra-2','G359',3.3],['plant-extra-3','G371',2.71],['plant-extra-4','H353',1.63],['plant-extra-5','H393',1.64],['plant-extra-6','H396',1.04],['plant-extra-7','L154',2.3]])Object.assign(media.find(m=>m.id===id),{grams:dose,format:'Polvo · '+code,preparation:'Producto '+code+': '+dose+' g/L. Disolver siguiendo la ficha del fabricante; ajustar el pH de trabajo para el cultivo y añadir solo los suplementos validados.'});
+Object.assign(media.find(m=>m.id==='malt-himedia'),{grams:50,source:'https://www.himedialabs.com/media/TD/M253F.pdf',format:'Polvo · M253F',preparation:'M253F: 50 g/L; disolver con calentamiento, esterilizar a 121 °C durante 15 min. Enfriar a 45–50 °C. pH 5,5 ± 0,2.'});
+Object.assign(media.find(m=>m.id==='m9'),{grams:11.28,format:'Sales M6030 a 1X + suplementos',source:'https://www.sigmaaldrich.com/US/en/product/sigma/m6030',preparation:'M6030: 56,4 g/L para stock 5X; equivalen a 11,28 g de polvo por litro final 1X. Preparar y esterilizar la base; añadir los stocks estériles de glucosa, Mg y Ca, reservando sus volúmenes antes de aforar.'});
+for(const [id,code,page] of [['dmem','11965',8],['cell-extra-0','11875',114],['cell-extra-1','12440',76],['cell-extra-2','11765',64],['cell-extra-3','11320',55]])Object.assign(media.find(m=>m.id===id),{format:'Líquido basal listo · '+code,source:'https://www.thermofisher.com/us/en/home/technical-resources/media-formulation.'+page+'.html',preparation:'Medio basal líquido '+code+' listo para uso; medir el volumen necesario de producto. Añadir solo los suplementos que requiera la línea. Preparación desde componentes en la opción clásica.'});

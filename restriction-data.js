@@ -1,4 +1,4 @@
-import {thermoConventional} from './thermo-conventional-data.js?v=2.5.1';
+import {thermoConventional} from './thermo-conventional-data.js?v=2.6.0';
 const nebChart='https://media.neb.com/m/66688dfd7fd4b1e8/original/2025_NEB_PerformanceChart_Poster.pdf';
 const fdManual='https://www.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012418_FastDigest_BamHI_UG.pdf';
 const fdChart='https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012723_FastDigest_Value_Pack_UG.pdf';

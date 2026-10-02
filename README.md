@@ -7,7 +7,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2.5.1: 37 métodos agrupados y 76 procedimientos con receta: 56 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
+- Catálogo v2.6.0: 37 métodos agrupados y 76 procedimientos con receta: 56 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
 - Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
 - Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
 - Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
@@ -121,3 +121,11 @@ La reindexación reemplaza solamente metadatos, no los pasos revisados. Revisar 
 ## Biblioteca Excel
 
 SheetJS Community Edition 0.20.3 (mini, solo .xlsx) se conserva en vendor/ con licencia Apache 2.0. Descargada de https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.mini.min.js. SHA-256: 0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939. No se envían archivos de muestras a servidores ni se ejecutan macros o fórmulas importadas. Las fórmulas de salida recalculan cantidades; la compatibilidad biológica debe reevaluarse en Molab si se cambian enzimas o buffers.
+
+## Preparación de medios · v2.6.0
+
+29 formulaciones para las 29 entradas de medios definidos del catálogo: ocho microbiológicos, seis para hongos, diez vegetales y cinco celulares; ATCC conserva su función de guía. Selección comercial/clásica, volumen final, edición por componente, suplementos, pH, lote y notas. Las variantes se identifican y no se igualan por nombre.
+
+Stocks de glucosa, MgSO4, CaCl2, fosfato TB y hierro/EDTA: enlace a Soluciones con alícuota exacta, lote de stock escalable y regreso al medio con el borrador conservado. Guardar y cerrar registra una instantánea finalizada en Sesión → Cuaderno. Excel con fórmulas y hojas de componentes, preparación y stocks; CSV, Markdown, JSON y copia de texto. Borradores y registros utilizan la sincronización privada existente. Cuaderno se abre desde el botón de Sesión.
+
+Fuentes: tablas de PhytoTechnology y Gibco, fichas Sigma y HiMedia, DSMZ 191 y recetas de laboratorio identificadas. Cada receta enlaza su fuente. Las tablas que no precisan hidratación la señalan; IMDM conserva la advertencia sobre la discrepancia del selenito en la tabla oficial. Ninguna equivalencia molar se calcula a partir de esa discrepancia.

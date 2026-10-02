@@ -14,15 +14,21 @@ import {restrictionVendors} from '../restriction-data.js';
 import {digestWorkbook,programWorkbook,readSampleWorkbook,sampleTemplate} from '../excel.js';
 import {programText,programCSV} from '../program-export.js';
 import {blankPersonal,validatePersonal} from '../personal-data.js';
+import {classicalMedia} from '../media-data.js';
+import * as mediaCalculations from '../media-calc.js';
+import * as mediaUI from '../media.js';
+const mediaUISource=(await readFile(new URL('../media.js',import.meta.url),'utf8')).replace(/^import .+;$/gm,'').replace(/^export /gm,'');
 const restrictionSource=(await readFile(new URL('../restriction.js',import.meta.url),'utf8')).replace(/^import .+;$/gm,'').replace(/^export /gm,'');
 const source=(await readFile(new URL('../app.js',import.meta.url),'utf8')).replace(/^import .+;$/gm,'');
-function boot(hash,{actualRestriction=false}={}){
+function boot(hash,{actualRestriction=false,actualMedia=false}={}){
+ const location={get hash(){return hash;},set hash(v){hash=v.startsWith('#')?v:'#'+v;}};
  const nodes=new Map();
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'1',dataset:{},classList:{add(){},remove(){},toggle(){}},showModal(){},close(){},focus(){}});return nodes.get(id);};
  const document={querySelector:selector=>selector.startsWith('#')?node(selector):null,querySelectorAll:()=>[],addEventListener(){},createElement:()=>({click(){}})};
  document.documentElement={dataset:{}};
- const context=vm.createContext({...data,...calculators,...catalog,...experiment,reagentCard,literatureSearches,restrictionView,bindRestriction:()=>{},defaultDigest,digestText,digestCalculation,digestWorkbook,programWorkbook,programText,programCSV,blankPersonal,validatePersonal,PersonalSession:class{constructor(){this.access={};this.status={message:'Local'};}start(){}changed(){}},sessionsView:()=>'<section class="panel">Sesión y sincronización con repositorio privado. Favoritos, notas y configuraciones.</section>',bindSessions(){},stopBenchTick(){},baseProtocols:data.protocols,document,window:{addEventListener(){},print(){}},location:{hash},navigator:{},localStorage:{getItem:()=>null,setItem(){}},crypto,URL,Blob,setTimeout:()=>0,clearTimeout(){},setInterval:()=>0,clearInterval(){},fetch:()=>Promise.reject(new Error('Offline test'))});
+ const context=vm.createContext({...data,...calculators,...catalog,...experiment,...mediaCalculations,...mediaUI,classicalMedia,bindMedium(){},bindStock(){},reagentCard,literatureSearches,restrictionView,bindRestriction:()=>{},defaultDigest,digestText,digestCalculation,digestWorkbook,programWorkbook,programText,programCSV,blankPersonal,validatePersonal,PersonalSession:class{constructor(){this.access={};this.status={message:'Local'};}start(){}changed(){}},sessionsView:()=>'<section class="panel">Sesión y sincronización con repositorio privado. Favoritos, notas y configuraciones.</section>',bindSessions(){},stopBenchTick(){},baseProtocols:data.protocols,document,window:{addEventListener(){},print(){}},location,navigator:{},localStorage:{getItem:()=>null,setItem(){}},crypto,URL,Blob,setTimeout:()=>0,clearTimeout(){},setInterval:()=>0,clearInterval(){},fetch:()=>Promise.reject(new Error('Offline test'))});
  if(actualRestriction){Object.assign(context,{restrictionVendors,restrictionVendor,importedSamples,readSampleWorkbook,sampleTemplate});document.querySelectorAll=selector=>{if(['[data-digest]','#app input,#app select'].includes(selector)){return ['vendor','buffer','volume','target','material','mode'].map(field=>{const control=node('digest:'+field);control.dataset={digest:field};return control;});}return [];};vm.runInContext(restrictionSource,context);}
+ if(actualMedia)vm.runInContext(mediaUISource,context);
  vm.runInContext(source,context,{timeout:1000});return {context,nodes};
 }
 test('client boots on every main screen without an exception',()=>{for(const route of ['protocols','favorites','calculators','media','notebook','sources','detail/q5','run']){const {nodes}=boot('#'+route);assert.ok(nodes.get('#app').innerHTML.length>100,route);assert.ok(nodes.get('#nav').innerHTML.includes('Protocolos'));}});
@@ -40,7 +46,7 @@ test('theme can be toggled and material filters do not show an incompatible meth
 });
 test('run snapshot uses modified reagent instructions and records material and source',()=>{
  const {context,nodes}=boot('#detail/genejet-plasmid');vm.runInContext("state.detailTab='config';render();saved.configs[state.id]=initialConfig(getProtocol());saved.configs[state.id].reagents.find(r=>r.key==='elu').amount=35;saved.configs[state.id].edited=true;startProtocol(getProtocol());",context);
- const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.5.1');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
+ const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.6.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
  vm.runInContext('exportExperiment(saved.activeRun.id)',context);assert.match(nodes.get('#modal').innerHTML,/data-experiment-format="csv"/);
 });
 test('restriction configuration uses the selected manufacturer and preserves its guided snapshot',()=>{
@@ -92,4 +98,28 @@ test('conventional detail keeps its own manufacturer preset and applies the reco
  vm.runInContext("restrictionContext().savePreset(currentDigest(),digestCalculation(currentDigest()));",context);
  vm.runInContext("$('#preset-name').value='EcoRV e HindIII convencionales';",context);nodes.get('#preset-form').onsubmit({preventDefault(){}});
  const preset=vm.runInContext('saved.customProtocols[0]',context);assert.equal(preset.manufacturer,'personal');assert.match(preset.subtitle,/Thermo Fisher Scientific/);assert.equal(preset.restrictionVendor,'thermo-conventional');assert.equal(preset.digestPreset.enzymes.length,2);
+});
+
+test('media keeps edited volume and notes across solutions, saves a finished snapshot and closes',()=>{
+ const {context,nodes}=boot('#media/soc',{actualMedia:true});
+ context.document.querySelectorAll=selector=>selector==='[data-media-mode]'?[{dataset:{mediaMode:'classical'}}]:[];
+ vm.runInContext('render();',context);context.document.querySelectorAll('[data-media-mode]')[0].onclick?.();
+ vm.runInContext("mediumDraft('soc').mode='classical';render();",context);
+ nodes.get('#media-volume').value='750';nodes.get('#media-volume').oninput({target:{value:'750'}});
+ nodes.get('#media-notes').oninput({target:{value:'Suplemento revisado'}});
+ vm.runInContext("mediumContext().openStock(classicalMedia.soc.components.find(c=>c.stock).id);readRoute();",context);
+ assert.match(nodes.get('#app').innerHTML,/necesitas <strong>30 mL/);
+ assert.equal(typeof nodes.get('#media-stock-volume').oninput,'function');
+ vm.runInContext("go('media');readRoute();",context);
+ assert.match(nodes.get('#app').innerHTML,/value="750"/);assert.match(nodes.get('#app').innerHTML,/Suplemento revisado/);
+ vm.runInContext('mediumContext().save();readRoute();',context);
+ assert.equal(vm.runInContext('saved.runs.at(-1).mediumResult.volume',context),750);
+ assert.equal(vm.runInContext('saved.runs.at(-1).complete',context),true);
+ assert.equal(context.location.hash,'#media');assert.equal(vm.runInContext('saved.bench.mediaSolution',context),undefined);
+ assert.match(nodes.get('#app').innerHTML,/Biblioteca de medios/);
+ vm.runInContext("exportExperiment(saved.runs.at(-1).id);",context);assert.match(nodes.get('#modal').innerHTML,/data-media-format="xlsx"/);
+});
+test('Cuaderno is opened from Sesión and keeps the parent navigation active',()=>{
+ const {context,nodes}=boot('#sessions');assert.match(nodes.get('#app').innerHTML,/data-nav="notebook"/);assert.doesNotMatch(nodes.get('#nav').innerHTML,/data-nav="notebook"/);
+ vm.runInContext("location.hash='notebook';readRoute();",context);assert.match(nodes.get('#nav').innerHTML,/nav-item active" data-nav="sessions"/);assert.match(nodes.get('#app').innerHTML,/Volver a Sesión/);
 });
