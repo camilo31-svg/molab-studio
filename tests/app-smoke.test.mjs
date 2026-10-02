@@ -81,4 +81,5 @@ test('saved digestion presets reopen their own concentrations, enzymes and buffe
  assert.match(nodes.get('#app').innerHTML,/FastDigest Green/);assert.match(nodes.get('#app').innerHTML,/Stock propio/);assert.equal(vm.runInContext('currentDigest().target',context),750);assert.equal(vm.runInContext('currentDigest().buffer',context),'green');
 });
 test('personal repository and session have their own navigation entries',()=>{for(const hash of ['#myprotocols','#sessions']){const {nodes}=boot(hash);assert.match(nodes.get('#nav').innerHTML,/Mis protocolos/);assert.match(nodes.get('#nav').innerHTML,/Sesión/);assert.ok(nodes.get('#app').innerHTML.length>100);}});
+test('invalid or incomplete backup cannot silently replace the personal data',()=>{const {context}=boot('#protocols');for(const input of [{format:'molab-v1'},{format:'molab-v1',data:{}},{format:'other',data:blankPersonal()}]){context.invalidBackup=input;assert.throws(()=>vm.runInContext('validateBackup(invalidBackup)',context));}context.validBackup={format:'molab-v1',data:blankPersonal()};assert.doesNotThrow(()=>vm.runInContext('validateBackup(validBackup)',context));});
 
