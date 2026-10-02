@@ -40,7 +40,7 @@ test('theme can be toggled and material filters do not show an incompatible meth
 });
 test('run snapshot uses modified reagent instructions and records material and source',()=>{
  const {context,nodes}=boot('#detail/genejet-plasmid');vm.runInContext("state.detailTab='config';render();saved.configs[state.id]=initialConfig(getProtocol());saved.configs[state.id].reagents.find(r=>r.key==='elu').amount=35;saved.configs[state.id].edited=true;startProtocol(getProtocol());",context);
- const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.4.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
+ const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.5.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
  vm.runInContext('exportExperiment(saved.activeRun.id)',context);assert.match(nodes.get('#modal').innerHTML,/data-experiment-format="csv"/);
 });
 test('restriction configuration uses the selected manufacturer and preserves its guided snapshot',()=>{
@@ -61,7 +61,7 @@ test('all notebook export buttons dispatch the corresponding complete record for
 test('restriction controls keep their handlers in the calculator and change every vendor buffer list',()=>{
  const {context,nodes}=boot('#calculators/restriction',{actualRestriction:true});
  assert.match(nodes.get('#app').innerHTML,/rCutSmart/);
- for(const [vendor,buffer,excluded] of [['thermo','FastDigest Green','NEBuffer r1.1'],['promega','4-CORE A','FastDigest Green'],['neb','rCutSmart','MULTI-CORE']]){
+ for(const [vendor,buffer,excluded] of [['thermo-conventional','Buffer R · Red','FastDigest Green'],['thermo','FastDigest Green','NEBuffer r1.1'],['promega','4-CORE A','FastDigest Green'],['neb','rCutSmart','MULTI-CORE']]){
   const control=nodes.get('digest:vendor');control.value=vendor;control.oninput();
   assert.equal(vm.runInContext('saved.bench.restriction.vendor',context),vendor);
   assert.match(nodes.get('#app').innerHTML,new RegExp(buffer));assert.ok(!nodes.get('#app').innerHTML.includes(excluded));
@@ -83,3 +83,13 @@ test('saved digestion presets reopen their own concentrations, enzymes and buffe
 test('personal repository and session have their own navigation entries',()=>{for(const hash of ['#myprotocols','#sessions']){const {nodes}=boot(hash);assert.match(nodes.get('#nav').innerHTML,/Mis protocolos/);assert.match(nodes.get('#nav').innerHTML,/Sesión/);assert.ok(nodes.get('#app').innerHTML.length>100);}});
 test('invalid or incomplete backup cannot silently replace the personal data',()=>{const {context}=boot('#protocols');for(const input of [{format:'molab-v1'},{format:'molab-v1',data:{}},{format:'other',data:blankPersonal()}]){context.invalidBackup=input;assert.throws(()=>vm.runInContext('validateBackup(invalidBackup)',context));}context.validBackup={format:'molab-v1',data:blankPersonal()};assert.doesNotThrow(()=>vm.runInContext('validateBackup(validBackup)',context));});
 
+
+test('conventional detail keeps its own manufacturer preset and applies the recommended buffer after manual choice',()=>{
+ const {context,nodes}=boot('#detail/digest-thermo-conventional',{actualRestriction:true});
+ vm.runInContext("state.detailTab='config';render();var cfg=currentDigest();cfg.volume=50;cfg.buffer='o';cfg.enzymes=[{id:'EcoRV',volume:1,stock:10},{id:'HindIII',volume:1,stock:10}];render();",context);
+ assert.match(nodes.get('#digest-compatibility').innerHTML,/Buffer R · Red/);
+ nodes.get('#digest-recommend').onclick();assert.equal(vm.runInContext('currentDigest().buffer',context),'auto');assert.equal(vm.runInContext('digestCalculation(currentDigest()).buffer.id',context),'r');
+ vm.runInContext("restrictionContext().savePreset(currentDigest(),digestCalculation(currentDigest()));",context);
+ vm.runInContext("$('#preset-name').value='EcoRV e HindIII convencionales';",context);nodes.get('#preset-form').onsubmit({preventDefault(){}});
+ const preset=vm.runInContext('saved.customProtocols[0]',context);assert.equal(preset.manufacturer,'personal');assert.match(preset.subtitle,/Thermo Fisher Scientific/);assert.equal(preset.restrictionVendor,'thermo-conventional');assert.equal(preset.digestPreset.enzymes.length,2);
+});

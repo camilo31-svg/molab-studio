@@ -1,9 +1,9 @@
 {
-  "version": "2.4.0",
+  "version": "2.5.0",
   "reviewedAt": "2026-10-02",
   "exhaustive": false,
   "methods": 37,
-  "procedures": 75,
+  "procedures": 76,
   "restrictionCompatibility": [
     {
       "manufacturer": "neb",
@@ -38,6 +38,25 @@
         "Buffer H"
       ],
       "source": "https://www.promega.com/resources/guides/nucleic-acid-analysis/restriction-enzyme-resource/restriction-enzyme-resource-tables/restriction-enzyme-activity-in-promega-buffers/"
+    },
+    {
+      "manufacturer": "thermo",
+      "line": "Convencionales",
+      "products": 162,
+      "buffers": [
+        "B (Blue)",
+        "G (Green)",
+        "O (Orange)",
+        "R (Red)",
+        "Tango 1X",
+        "Tango 2X",
+        "EcoRI",
+        "BamHI",
+        "KpnI"
+      ],
+      "source": "https://www.thermofisher.com/tr/en/home/brands/thermo-scientific/molecular-biology/thermo-scientific-restriction-modifying-enzymes/restriction-enzymes-thermo-scientific/conventional-restriction-enzymes-thermo-scientific/reaction-conditions-for-restriction-enzymes.html",
+      "conditionsSource": "https://www.thermofisher.com/tr/en/home/brands/thermo-scientific/molecular-biology/thermo-scientific-restriction-modifying-enzymes/restriction-enzymes-thermo-scientific/conventional-restriction-enzymes-thermo-scientific.html",
+      "coverage": "190 productos en la tabla; configurados 159 con buffers generales sin suplemento adicional más EcoRI/BamHI/KpnI con manuales propios. 8 con suplementos y 20 con otros buffers únicos pendientes de extracción de receta."
     }
   ],
   "records": [
@@ -1093,6 +1112,23 @@
       "source": "https://worldwide.promega.com/-/media/files/resources/protocols/technical-manuals/101/restriction-enzymes-protocol.pdf?rev=fe94bb66a3dc4b69b25c21cfd090ce3c",
       "version": "TM367 · revisión 3/23",
       "section": "3",
+      "materials": [
+        "Plásmidos",
+        "Productos de PCR",
+        "DNA genómico"
+      ],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "digest-thermo-conventional",
+      "family": "restriction-digestion",
+      "title": "Digestión · Thermo Scientific · Convencionales",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012096_Eco32I_EcoRV_10_UuL_2000U_UG.pdf",
+      "version": "Convencionales · tabla oficial revisada 02/10/2026",
+      "section": "2–3",
       "materials": [
         "Plásmidos",
         "Productos de PCR",
