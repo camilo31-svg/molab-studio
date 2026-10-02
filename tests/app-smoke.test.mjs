@@ -35,4 +35,11 @@ test('run snapshot uses modified reagent instructions and records material and s
  const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.2.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
  vm.runInContext('exportExperiment(saved.activeRun.id)',context);assert.match(nodes.get('#modal').innerHTML,/data-experiment-format="csv"/);
 });
+test('all notebook export buttons dispatch the corresponding complete record format',()=>{
+ const {context}=boot('#detail/genejet-plasmid'),buttons=['md','txt','csv','json'].map(format=>({dataset:{experimentFormat:format}}));
+ context.document.querySelectorAll=selector=>selector==='[data-experiment-format]'?buttons:[];
+ vm.runInContext("saved.runs=[{id:'export-check',name:'Exportación de prueba',protocolId:'genejet-plasmid',config:initialConfig(getProtocol()),steps:getProtocol().steps,stepNotes:{},events:[]}];var downloaded=[];download=(name,body,type)=>downloaded.push({name,body,type});exportExperiment('export-check');",context);
+ for(const button of buttons)button.onclick();const result=vm.runInContext('downloaded',context);
+ assert.equal(result.length,4);assert.match(result[0].name,/\.md$/);assert.match(result[1].body,/# Exportación de prueba/);assert.match(result[2].body,/"Elution Buffer","50","400","µL"/);assert.equal(JSON.parse(result[3].body).config.reagents.find(r=>r.key==='elu').amount,50);
+});
 

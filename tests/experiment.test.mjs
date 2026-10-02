@@ -5,6 +5,7 @@ import {buildFamilies,selectVersions} from '../catalog.js';
 import {reagentAmounts,resolveReagentSteps,experimentReport,experimentCSV} from '../experiment.js';
 const byId=id=>protocols.find(p=>p.id===id);
 test('commercial recipes remain grouped and manufacturers can be selected independently',()=>{
+ for(const p of protocols){assert.ok(p.title,p.id+' lacks a procedure title');assert.ok(p.citations[0].title,p.id+' lacks a source title');}
  const families=buildFamilies(protocols),plasmids=families.find(f=>f.id==='plasmid-miniprep');
  assert.equal(families.filter(f=>f.id==='phusion').length,1);assert.equal(families.find(f=>f.id==='phusion').versions.length,5);
  assert.equal(new Set(plasmids.versions.map(p=>p.manufacturer)).size,9);

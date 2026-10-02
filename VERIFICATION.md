@@ -7,6 +7,10 @@
 - Reactivos secuenciales, totales por muestras independientes y dependencias calculadas de volumen medido (AW1, etanol, isopropanol). Las instrucciones de ejecución resuelven las cantidades modificadas.
 - Exportación Markdown/TXT/CSV/JSON en curso y al terminar; copia de texto, parámetros, notas y marcas de avance. Las marcas de la guía no prueban condiciones reales del equipo.
 - Modo oscuro/claro persistente; versión en la esquina superior derecha. Se conserva la clave de datos personales y se aceptan las configuraciones anteriores.
-- 43 pruebas automatizadas pasan: cálculos, fórmulas y controles, separación de orígenes, recetas por fabricante/material, dependencias y cantidades ejecutadas, exportación, pantallas de todas las extracciones, tema y herramientas de DNA.
+- 44 pruebas automatizadas pasan: cálculos, fórmulas y controles, separación de orígenes, recetas por fabricante/material, dependencias y cantidades ejecutadas, exportación, pantallas de todas las extracciones, tema y herramientas de DNA.
 
 El catálogo tiene cobertura documentada y ampliable; no es exhaustivo mundialmente. Las condiciones están extraídas de las fuentes, sin validación experimental propia. reviewed-sources.json conserva la procedencia por procedimiento; catalog-index.json distingue la recuperación automática anterior de la revisión de recetas.
+
+Comprobación en GitHub Pages: selección de miniprep Geneaid; tres muestras con elución 35 µL (105 µL totales), modificación durante la guía a 40 µL (120 µL totales) con historial; informe y copia de texto en curso y al finalizar. Sin errores de consola en ese recorrido.
+
+Vista móvil comprobada a 390 × 844: ancho de contenido 375 px, sin desbordamiento horizontal; barra de navegación inferior, versión y cambio de tema visibles. El modo oscuro persiste tras recargar. Filtro Plantas excluye minipreps bacterianas y ramas GeneJET Genomic de otros materiales.

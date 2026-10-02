@@ -374,6 +374,7 @@
     {
       "id": "phusion-thermo-hf",
       "family": "phusion",
+      "title": "Phusion Thermo Scientific · buffer HF",
       "manufacturer": "thermo",
       "origin": "commercial",
       "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf",
@@ -386,6 +387,7 @@
     {
       "id": "phusion-thermo-gc",
       "family": "phusion",
+      "title": "Phusion Thermo Scientific · buffer GC",
       "manufacturer": "thermo",
       "origin": "commercial",
       "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf",
@@ -398,6 +400,7 @@
     {
       "id": "phusion-neb-hf",
       "family": "phusion",
+      "title": "Phusion NEB · buffer HF",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true",
@@ -410,6 +413,7 @@
     {
       "id": "phusion-neb-gc",
       "family": "phusion",
+      "title": "Phusion NEB · buffer GC",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true",
@@ -422,6 +426,7 @@
     {
       "id": "phusion-flex-neb",
       "family": "phusion",
+      "title": "Phusion Hot Start Flex · NEB",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/protocol-for-phusion-hot-start-flex-dna-polymerase-m0535?pdf=true",
@@ -434,6 +439,7 @@
     {
       "id": "q5-hotstart-mix",
       "family": "q5",
+      "title": "Q5 Hot Start · master mix 2X",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/protocol-for-q5-hot-start-high-fidelity-2x-master-mix-m0494?pdf=true",
@@ -446,6 +452,7 @@
     {
       "id": "onetaq-mix",
       "family": "onetaq",
+      "title": "OneTaq · master mix 2X estándar",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/protocol-for-onetaq-2x-master-mix-with-standard-buffer-m0482?pdf=true",
@@ -458,6 +465,7 @@
     {
       "id": "longamp-taq",
       "family": "longamp",
+      "title": "LongAmp Taq · PCR de fragmentos largos",
       "manufacturer": "neb",
       "origin": "commercial",
       "source": "https://www.neb.com/en/protocols/m0323-longamp-taq-dna-polymerase-protocol?pdf=true",
@@ -470,6 +478,7 @@
     {
       "id": "iproof-hf",
       "family": "iproof",
+      "title": "iProof High-Fidelity · buffer HF",
       "manufacturer": "biorad",
       "origin": "commercial",
       "source": "https://www.bio-rad.com/webroot/web/pdf/lsr/literature/10002300B.pdf",
@@ -482,6 +491,7 @@
     {
       "id": "superfi-ii",
       "family": "superfi-ii",
+      "title": "Platinum SuperFi II · polimerasa",
       "manufacturer": "thermo",
       "origin": "commercial",
       "source": "https://www.thermofisher.com/us/en/home/references/protocols/nucleic-acid-amplification-and-expression-profiling/pcr-protocol/superfi-pcr-protocol.html",
@@ -494,6 +504,7 @@
     {
       "id": "gotaq-g2-endpoint",
       "family": "gotaq-g2",
+      "title": "GoTaq G2 Colorless Master Mix · PCR endpoint",
       "manufacturer": "promega",
       "origin": "commercial",
       "source": "https://worldwide.promega.com/-/media/files/resources/protocols/product-information-sheets/g/gotaq-g2-colorless-master-mix-protocol.pdf",
@@ -506,6 +517,7 @@
     {
       "id": "mytaq-hs",
       "family": "mytaq",
+      "title": "MyTaq HS Mix · PCR rápida",
       "manufacturer": "bioline",
       "origin": "commercial",
       "source": "https://www.bioline.com/mwdownloads/download/link/id/2689/",
