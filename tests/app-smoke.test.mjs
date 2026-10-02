@@ -40,7 +40,7 @@ test('theme can be toggled and material filters do not show an incompatible meth
 });
 test('run snapshot uses modified reagent instructions and records material and source',()=>{
  const {context,nodes}=boot('#detail/genejet-plasmid');vm.runInContext("state.detailTab='config';render();saved.configs[state.id]=initialConfig(getProtocol());saved.configs[state.id].reagents.find(r=>r.key==='elu').amount=35;saved.configs[state.id].edited=true;startProtocol(getProtocol());",context);
- const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.5.0');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
+ const run=vm.runInContext('saved.activeRun',context);assert.equal(run.appVersion,'2.5.1');assert.equal(run.materials[0],'Bacterias · cultivo de E. coli');assert.match(run.steps.find(s=>s.title==='Añadir eluyente').text,/35 µL/);
  vm.runInContext('exportExperiment(saved.activeRun.id)',context);assert.match(nodes.get('#modal').innerHTML,/data-experiment-format="csv"/);
 });
 test('restriction configuration uses the selected manufacturer and preserves its guided snapshot',()=>{

@@ -7,7 +7,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2.5.0: 37 métodos agrupados y 76 procedimientos con receta: 56 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
+- Catálogo v2.5.1: 37 métodos agrupados y 76 procedimientos con receta: 56 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
 - Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
 - Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
 - Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
@@ -19,6 +19,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Mis protocolos: guarda una configuración modificada con reactivos, muestras, programa, pasos y fuente; las digestiones conservan su propio proveedor, enzimas, buffer y concentraciones al reabrirlas.
 - Sesión: sincronización opcional entre dispositivos mediante un repositorio privado de GitHub. Combina favoritos, notas, configuraciones, protocolos, compuestos, banco de trabajo y cuaderno; conserva las copias de ediciones simultáneas para resolverlas expresamente.
+- Fuentes se abre con un botón dentro de Mis protocolos; la navegación principal conserva Mis protocolos como sección activa. Los buffers con color documentado muestran círculos junto al recomendado, elegido, individual y matriz (B azul, G verde, O naranja, R rojo, Tango amarillo; FastDigest Green indica azul y amarillo).
 - Cambio de fabricante en digestiones corregido: los controles del cálculo general ya no sustituyen los de restricción. Los desplegables muestran únicamente buffers y enzimas del proveedor seleccionado.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación. Descarga independiente en texto/Markdown, CSV, Excel y gráfica SVG; también se exportan condiciones no térmicas.

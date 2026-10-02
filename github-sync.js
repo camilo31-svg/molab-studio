@@ -1,4 +1,4 @@
-import {emptyDocument,validateDocument,mergeDocuments} from './sync-data.js?v=2.5.0';
+import {emptyDocument,validateDocument,mergeDocuments} from './sync-data.js?v=2.5.1';
 const API='https://api.github.com',FILE='molab/personal-v1.json',MAX=5*1024*1024;
 export const encodeUTF8=text=>{const bytes=new TextEncoder().encode(text);let binary='';for(let i=0;i<bytes.length;i+=8192)binary+=String.fromCharCode(...bytes.subarray(i,i+8192));return btoa(binary);};
 export const decodeUTF8=content=>new TextDecoder('utf-8',{fatal:true}).decode(Uint8Array.from(atob(content.replace(/\s/g,'')),c=>c.charCodeAt(0)));

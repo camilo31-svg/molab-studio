@@ -1,6 +1,6 @@
-import {copy,personalData} from './personal-data.js?v=2.5.0';
-import {emptyDocument,captureChanges,mergeDocuments,materialize,syncConflicts,resolveConflict,validateDocument} from './sync-data.js?v=2.5.0';
-import {GitHubSync,repositoryName} from './github-sync.js?v=2.5.0';
+import {copy,personalData} from './personal-data.js?v=2.5.1';
+import {emptyDocument,captureChanges,mergeDocuments,materialize,syncConflicts,resolveConflict,validateDocument} from './sync-data.js?v=2.5.1';
+import {GitHubSync,repositoryName} from './github-sync.js?v=2.5.1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const CONFIG='molab-sync-access-v1',META='molab-sync-document-v1';
 const safeRead=(store,k,fallback)=>{try{return JSON.parse(store.getItem(k)||'null')||fallback;}catch{return fallback;}};

@@ -20,42 +20,48 @@ export const thermoConventional={id:'thermo-conventional',manufacturer:'thermo',
     "name": "Buffer B · Blue (azul)",
     "stock": 10,
     "final": 1,
-    "color": "Código de color azul del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color azul del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["blue"]
   },
   {
     "id": "g",
     "name": "Buffer G · Green (verde)",
     "stock": 10,
     "final": 1,
-    "color": "Código de color verde del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color verde del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["green"]
   },
   {
     "id": "o",
     "name": "Buffer O · Orange (naranja)",
     "stock": 10,
     "final": 1,
-    "color": "Código de color naranja del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color naranja del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["orange"]
   },
   {
     "id": "r",
     "name": "Buffer R · Red (rojo)",
     "stock": 10,
     "final": 1,
-    "color": "Código de color rojo del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color rojo del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["red"]
   },
   {
     "id": "tango",
     "name": "Tango · amarillo",
     "stock": 10,
     "final": 1,
-    "color": "Código de color amarillo del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color amarillo del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["yellow"]
   },
   {
     "id": "tango2",
     "name": "Tango · amarillo",
     "stock": 10,
     "final": 2,
-    "color": "Código de color amarillo del sistema Thermo; no significa que contenga colorante de carga."
+    "color": "Código de color amarillo del sistema Thermo; no significa que contenga colorante de carga.",
+    "colorCodes": ["yellow"]
   },
   {
     "id": "specific-EcoRI",

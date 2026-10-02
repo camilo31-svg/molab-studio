@@ -1,5 +1,5 @@
-import {dnaTools} from './sequence.js?v=2.5.0';
-import {serialDilution,cellCount,linearRegression,bufferRecipe,cfu,doublingTime} from './bench-calc.js?v=2.5.0';
+import {dnaTools} from './sequence.js?v=2.5.1';
+import {serialDilution,cellCount,linearRegression,bufferRecipe,cfu,doublingTime} from './bench-calc.js?v=2.5.1';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const f=n=>Number(n).toLocaleString('es-ES',{maximumFractionDigits:5});
 const field=(label,id,value,type='number')=>`<label class="field">${label}<input id="b-${id}" type="${type}" ${type==='number'?'step="any"':''} value="${esc(value)}"></label>`;
