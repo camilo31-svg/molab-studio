@@ -1151,14 +1151,18 @@
         "variant": "LB Miller · componentes individuales",
         "components": 3,
         "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/148/243/l3152inf.pdf",
-        "additionalSources": []
+        "additionalSources": [
+          "https://www.thermofisher.com/us/en/home/life-science/cell-culture/microbiological-culture/bacterial-growth-media/lb-broth-and-lb-agar.html"
+        ]
       },
       {
         "id": "lb-agar",
         "variant": "LB Miller agar 1,5 %",
         "components": 4,
         "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/148/243/l3152inf.pdf",
-        "additionalSources": []
+        "additionalSources": [
+          "https://www.thermofisher.com/us/en/home/life-science/cell-culture/microbiological-culture/bacterial-growth-media/lb-broth-and-lb-agar.html"
+        ]
       },
       {
         "id": "luria",

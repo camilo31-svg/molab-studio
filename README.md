@@ -32,7 +32,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 - Las combinaciones con temperaturas diferentes, actividad insuficiente, agua negativa o >10 % de enzima no se inician como digestión simultánea. Actividad parcial requiere revisar la ficha y confirmar; tiempos y stocks modificados quedan indicados.
 - Ejecución guiada con siguiente/anterior, condiciones, cronómetros, reanudación y registro del experimento.
 - Soluciones molares, masa/volumen, pureza, diluciones, DNA molar, ratios de cloning, RPM/RCF y ΔΔCt.
-- 30 fichas de medios para microbiología, hongos, plantas y células animales/humanas. 13 dosis comerciales calculables; el resto enlaza la formulación sin inventar dosis.
+- 29 medios para microbiología, hongos, plantas y células animales/humanas con formulación clásica calculable y preparación comercial, además de una guía general de ATCC. Stocks precargados, notas, guardado y exportación para el cuaderno.
 - 29 formas químicas en la base. Preparación de stocks de reguladores vegetales por producto: IAA, IBA, NAA, BAP, kinetina, GA3, TDZ, zeatina y 2iP. Seguridad y SDS cuando se han verificado; los campos pendientes se identifican expresamente. Compuestos personales con CAS, proveedor, disolvente, diluyente, preparación y datos de seguridad.
 - Registros de experimentos en curso o finalizados: copiar texto o descargar Markdown, TXT, CSV y JSON con cantidades editadas, parámetros, pasos, notas, fuente y marcas de avance. Copias personales e impresión.
 - PWA con acceso sin conexión después de la primera carga (los documentos externos requieren Internet).

@@ -9,7 +9,7 @@ export function commercialComponents(m,d){
   const dose=d.dose;
   return [{id:'powder',name:'Polvo comercial · '+(recipe?.commercialCode||m.name),amount:number(dose,'Dosis comercial'),unit:'g/L'},...(m.id==='tb'?[{id:'glycerol',name:'Glicerol',amount:4,unit:'mL/L'}]:[]),...(m.id==='m9'?recipe.components.filter(c=>c.stock):[])];
  }
- return [{id:'ready',name:'Medio comercial listo para usar',amount:1000,unit:'mL/L',note:'Medio basal; suplementos de la línea por separado.'}];
+ return [{id:'ready',name:'Medio comercial listo para usar',amount:1000,unit:'mL/L',note:'Producto suministrado preparado; revisa sus suplementos específicos.'}];
 }
 export function mediumCalculation(m,d){
  const volume=number(d.volume,'Volumen final'),recipe=classicalMedia[m.id];
@@ -22,7 +22,8 @@ export function mediumCalculation(m,d){
  });
  const liquid=rows.filter(r=>r.resultUnit==='mL').reduce((n,r)=>n+r.quantity,0);
  if(liquid>volume+1e-8)throw new Error('Los líquidos y stocks superan el volumen final.');
- return {id:m.id,name:m.name,mode:d.mode,variant:d.mode==='classical'?recipe.variant:m.format,volume,rows,liquid,water:'Agua purificada c.s.p. '+volume+' mL finales (incluyendo los stocks y suplementos)',ph:d.ph||(d.mode==='classical'?recipe.ph:'Según producto'),lot:d.lot||'',notes:d.notes||'',source:d.mode==='classical'?recipe.source:m.source,additionalSources:d.mode==='classical'?recipe.additionalSources||[]:[],steps:d.mode==='classical'?recipe.steps:[m.preparation],recipeNotes:d.mode==='classical'?recipe.notes:'',stocks:copy(d.stocks||{}),modified:rows.some(r=>r.modified)||(d.extras||[]).length>0};
+ const ready=rows.some(r=>r.id==='ready'&&Math.abs(r.quantity-volume)<1e-8);
+ return {id:m.id,name:m.name,mode:d.mode,variant:d.mode==='classical'?recipe.variant:m.format,volume,rows,liquid,ready,water:ready?'No añadir agua: el producto ya contiene el volumen final.':'Agua purificada c.s.p. '+volume+' mL finales (incluyendo los stocks y suplementos)',ph:d.ph||(d.mode==='classical'?recipe.ph:'Según producto'),lot:d.lot||'',notes:d.notes||'',source:d.mode==='classical'?recipe.source:m.source,additionalSources:d.mode==='classical'?recipe.additionalSources||[]:[],steps:d.mode==='classical'?recipe.steps:[m.preparation],recipeNotes:d.mode==='classical'?recipe.notes:'',stocks:copy(d.stocks||{}),modified:rows.some(r=>r.modified)||(d.extras||[]).length>0};
 }
 export function stockContext(m,d,componentId){
  const result=mediumCalculation(m,d),r=result.rows.find(r=>r.id===componentId);
