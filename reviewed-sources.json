@@ -1,0 +1,944 @@
+{
+  "version": "2.2.0",
+  "reviewedAt": "2026-10-02",
+  "exhaustive": false,
+  "methods": 35,
+  "procedures": 68,
+  "records": [
+    {
+      "id": "q5",
+      "family": "q5",
+      "title": "Q5® High-Fidelity PCR",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://intl.neb.com/-/media/nebus/files/manuals/manuale0555.pdf?rev=aa908f8055e84c098ef15ac6fc1c7377",
+      "version": "E0555 · v5.0 · 07/2025",
+      "section": "3–5",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "dreamtaq",
+      "family": "dreamtaq",
+      "title": "DreamTaq™ PCR Master Mix",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012702_DreamTaq_K1071_UG.pdf",
+      "version": "MAN0012702 · Rev. B.00 · 2016",
+      "section": "1–2",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gotaq",
+      "family": "gotaq",
+      "title": "GoTaq® qPCR Master Mix",
+      "manufacturer": "promega",
+      "origin": "commercial",
+      "source": "https://worldwide.promega.com/-/media/files/resources/protocols/technical-manuals/101/gotaq-qpcr-master-mix-protocol.pdf?rev=ab3c8f7ad767498ebd46346ce8e36cac",
+      "version": "TM318 · 10/2024",
+      "section": "5–7",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "hifi",
+      "family": "hifi",
+      "title": "NEBuilder® HiFi DNA Assembly",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale2621_e5520.pdf",
+      "version": "E2621 / E5520",
+      "section": "8",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "western",
+      "family": "western",
+      "title": "Western blot · Criterion TGX",
+      "manufacturer": "biorad",
+      "origin": "commercial",
+      "source": "https://www.bio-rad.com/sites/default/files/2021-11/Bulletin_7431.pdf",
+      "version": "Bulletin 7431 · Ver. A",
+      "section": "1–2",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "quickdna",
+      "family": "quickdna",
+      "title": "Quick-DNA™ Miniprep Plus",
+      "manufacturer": "zymo",
+      "origin": "commercial",
+      "source": "https://files.zymoresearch.com/quick-protocol/_d4068_d4069_quick-dna_miniprep_plus_quick_protocol.pdf",
+      "version": "Protocolo rápido · v1.3.0",
+      "section": "1",
+      "materials": [
+        "Células animales / humanas"
+      ],
+      "inputLimit": "Hasta 200 µL de suspensión celular; receta BioFluid & Cell Buffer del protocolo rápido.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ref-10",
+      "family": "ref-10",
+      "title": "Murashige & Skoog · M5519",
+      "manufacturer": "sigma",
+      "origin": "commercial",
+      "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/361/537/m5519pis.pdf",
+      "version": "M5519 · ficha de producto",
+      "section": "1",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gb-ecoli-2025",
+      "family": "goldenbraid",
+      "title": "GoldenBraid 2.0 · E. coli · reacción 2025",
+      "manufacturer": "goldenbraid",
+      "origin": "paper",
+      "source": "https://academic.oup.com/synbio/article/10/1/ysaf015/8234327",
+      "version": "Synthetic Biology · ysaf015 · 2025",
+      "section": "GoldenBraid2.0 domestications and assemblies",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "addgene-ligation",
+      "family": "addgene-ligation",
+      "title": "Ligación T4 · vector + inserto",
+      "manufacturer": "addgene",
+      "origin": "academic",
+      "source": "https://www.addgene.org/protocols/dna-ligation/",
+      "version": "Addgene · DNA ligation",
+      "section": "Standard Insert + Vector DNA Ligation",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gg-bsai",
+      "family": "golden-gate-neb",
+      "title": "Golden Gate · BsaI-HFv2 · 2–10 insertos",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/-/media/nebus/files/manuals/manuale1601.pdf?hash=400C427F510A5D73B0BC9DAA2864896E&rev=081ac4464c9848f184a572f576f5cf75",
+      "version": "E1601 · v5.0 · 06/2026",
+      "section": "6",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gg-bsmbi",
+      "family": "golden-gate-neb",
+      "title": "Golden Gate · BsmBI-v2 · 2–10 insertos",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/golden-gate-assembly-protocol-for-using-neb-golden-gate-assembly-kit-bsmbi-v2-neb-e1602",
+      "version": "E1602 · protocolo oficial",
+      "section": "Assembly protocol",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "start-stop",
+      "family": "start-stop",
+      "title": "Start-Stop Assembly · reacción de ensamblaje",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379671/",
+      "version": "NAR · gky1182 · métodos",
+      "section": "Start-Stop Assembly reactions",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gb-2021",
+      "family": "goldenbraid",
+      "title": "GoldenBraid 2.0 · ciclado · Matinyan 2021",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8480232/",
+      "version": "Matinyan et al. · Cell Reports · 2021",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "greengate-2013",
+      "family": "greengate",
+      "title": "GreenGate · seis módulos · 2013",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0083043",
+      "version": "Lampropoulos et al. · PLOS ONE · 2013",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "loop-bsai-2019",
+      "family": "loop",
+      "title": "Loop · nivel impar · BsaI",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://www.protocols.io/view/loop-l1-odd-level-bsai-type-iis-cloning-into-pck-v-92gh8bw.pdf",
+      "version": "Pollak et al. · Loop 2019 / protocolo de autores",
+      "section": "4–6",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "uloop-sapi-2020",
+      "family": "loop",
+      "title": "uLoop · nivel par · SapI",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://academic.oup.com/synbio/article/5/1/ysaa001/5727770",
+      "version": "Pollak et al. · Synthetic Biology · 2020",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "competent-cacl2-2024",
+      "family": "competent-ecoli",
+      "title": "E. coli · CaCl₂ / PIPES / glicerol",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://journals.asm.org/doi/10.1128/mbio.01167-24",
+      "version": "mBio · 2024 · sección Chemically competent cells",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "transform-addgene",
+      "family": "transform-ecoli-heat",
+      "title": "E. coli · choque térmico · Addgene",
+      "manufacturer": "addgene",
+      "origin": "academic",
+      "source": "https://www.addgene.org/protocols/bacterial-transformation/",
+      "version": "Addgene · actualizado 13/11/2017",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "transform-neb5",
+      "family": "transform-ecoli-heat",
+      "title": "NEB 5-alpha · alta eficiencia",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/0001/01/01/high-efficiency-transformation-protocol-c2987?pdf=true",
+      "version": "NEB · High Efficiency C2987",
+      "section": "1–2",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "electro-neb10",
+      "family": "transform-ecoli-electro",
+      "title": "NEB 10-beta · electroporación",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/electroporation-protocol-c3020",
+      "version": "NEB · Electroporation C3020",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "yeast-plte-2022",
+      "family": "transform-yeast",
+      "title": "S. cerevisiae · PLTE / DMSO · 2022",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11784917/",
+      "version": "Methods Mol Biol · 2022 · 2513:15–22",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "agrobacterium-2023",
+      "family": "transform-agrobacterium",
+      "title": "A. tumefaciens GV3101 · congelación / choque",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0290097",
+      "version": "GreenGate 2.0 · sección bacterial strains",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "floral-clough-1998",
+      "family": "floral-dip",
+      "title": "Floral dip · Clough y Bent · 1998",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://onlinelibrary.wiley.com/doi/full/10.1046/j.1365-313x.1998.00343.x",
+      "version": "Clough y Bent · Plant Journal · 1998",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "floral-davis-2009",
+      "family": "floral-dip",
+      "title": "Floral dip · YEBS directo · Davis 2009",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://www.research.ed.ac.uk/files/87618773/Protocol_Streamlined_sub_protocols_AAM_1746_4811_5_3.pdf",
+      "version": "Davis et al. · Plant Methods · 2009 · sub-protocolo 2",
+      "section": "Sub-protocolo 2",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "agro-benthamiana-2015",
+      "family": "agroinfiltration",
+      "title": "N. benthamiana · jeringa · Bashandy 2015",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4607171/",
+      "version": "Bashandy, Jalkanen y Teeri · Plant Methods · 2015",
+      "section": "Materiales y métodos",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "lipo3000-general",
+      "family": "lipofectamine3000",
+      "title": "Lipofectamine 3000 · 24 pozos",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://tools.thermofisher.com/content/sfs/manuals/lipofectamine3000_protocol.pdf",
+      "version": "Thermo Fisher · receta específica · 24 pozos",
+      "section": "Tabla de transfección",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "lipo3000-hep",
+      "family": "lipofectamine3000",
+      "title": "Lipofectamine 3000 · Hep 3B2.1-7",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://www.thermofisher.com/us/en/home/references/protocols/cell-culture/transfection-protocol/hep-3b21-7-cells-protocol.html",
+      "version": "Thermo Fisher · receta específica · 24 pozos",
+      "section": "Tabla de transfección",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "lipo3000-h4",
+      "family": "lipofectamine3000",
+      "title": "Lipofectamine 3000 · H-4-II-E",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://www.thermofisher.com/TFS-Assets/BID/Reference-Materials/lipofectamine3000-h-4-ii-e-liver-protocol.pdf",
+      "version": "Thermo Fisher · receta específica · 24 pozos",
+      "section": "Tabla de transfección",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "phusion-thermo-hf",
+      "family": "phusion",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf",
+      "version": "MAN0012393 E.0",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "phusion-thermo-gc",
+      "family": "phusion",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012393_Phusion_HighFidelity_DNAPolymerase_UG.pdf",
+      "version": "MAN0012393 E.0",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "phusion-neb-hf",
+      "family": "phusion",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true",
+      "version": "M0530",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "phusion-neb-gc",
+      "family": "phusion",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/pcr-protocol-m0530?pdf=true",
+      "version": "M0530",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "phusion-flex-neb",
+      "family": "phusion",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/protocol-for-phusion-hot-start-flex-dna-polymerase-m0535?pdf=true",
+      "version": "M0535",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "q5-hotstart-mix",
+      "family": "q5",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/protocol-for-q5-hot-start-high-fidelity-2x-master-mix-m0494?pdf=true",
+      "version": "M0494",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "onetaq-mix",
+      "family": "onetaq",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/protocol-for-onetaq-2x-master-mix-with-standard-buffer-m0482?pdf=true",
+      "version": "M0482",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "longamp-taq",
+      "family": "longamp",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/protocols/m0323-longamp-taq-dna-polymerase-protocol?pdf=true",
+      "version": "M0323",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "iproof-hf",
+      "family": "iproof",
+      "manufacturer": "biorad",
+      "origin": "commercial",
+      "source": "https://www.bio-rad.com/webroot/web/pdf/lsr/literature/10002300B.pdf",
+      "version": "10002300B",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "superfi-ii",
+      "family": "superfi-ii",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://www.thermofisher.com/us/en/home/references/protocols/nucleic-acid-amplification-and-expression-profiling/pcr-protocol/superfi-pcr-protocol.html",
+      "version": "Platinum SuperFi II · protocolo oficial",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "gotaq-g2-endpoint",
+      "family": "gotaq-g2",
+      "manufacturer": "promega",
+      "origin": "commercial",
+      "source": "https://worldwide.promega.com/-/media/files/resources/protocols/product-information-sheets/g/gotaq-g2-colorless-master-mix-protocol.pdf",
+      "version": "9PIM783",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "mytaq-hs",
+      "family": "mytaq",
+      "manufacturer": "bioline",
+      "origin": "commercial",
+      "source": "https://www.bioline.com/mwdownloads/download/link/id/2689/",
+      "version": "MyTaq HS Mix · ficha técnica",
+      "section": "Tabla de reacción y condiciones térmicas",
+      "materials": [],
+      "inputLimit": "",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "qiaprep-high-yield",
+      "family": "plasmid-miniprep",
+      "title": "QIAprep Spin · alto rendimiento",
+      "manufacturer": "qiagen",
+      "origin": "commercial",
+      "source": "https://www.qiagen.com/en-US/resources/download/Protocols/qiaprep-spin-miniprep-high-yield-protocol",
+      "version": "QIAprep Spin · high-yield protocol",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "5 mL de cultivo bacteriano; variante de alto rendimiento.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "nucleospin-plasmid",
+      "family": "plasmid-miniprep",
+      "title": "NucleoSpin Plasmid · centrifugación",
+      "manufacturer": "mn",
+      "origin": "commercial",
+      "source": "https://www.mn-net.com/media/pdf/26/71/8f/LF-NucleoSpin-Plasmid.pdf",
+      "version": "Quick procedure · julio 2023, Rev. 1",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1–5 mL de cultivo de E. coli.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-plasmid",
+      "family": "plasmid-miniprep",
+      "title": "GeneJET Plasmid Miniprep",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012655_GeneJET_Plasmid_Miniprep_UG.pdf",
+      "version": "MAN0012655 · Rev. B",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "Cultivo bacteriano de acuerdo con el número de copias y capacidad del kit.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "monarch-spin-t1110",
+      "family": "plasmid-miniprep",
+      "title": "Monarch Spin Plasmid · T1110",
+      "manufacturer": "neb",
+      "origin": "commercial",
+      "source": "https://www.neb.com/en/-/media/nebus/files/manuals/manualt1110.pdf?hash=0E16D757374BDE87A803007123A949E1&rev=30fe3e7c6ab34e0980df8a0fa5f5592c&sc_lang=en",
+      "version": "T1110 · v1.3, 04/2026",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1–5 mL de cultivo, máximo 15 unidades OD; columna ≤800 µL por carga.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "wizard-plus-sv",
+      "family": "plasmid-miniprep",
+      "title": "Wizard Plus SV · miniprep por centrifugación",
+      "manufacturer": "promega",
+      "origin": "commercial",
+      "source": "https://worldwide.promega.com/-/media/files/resources/protcards/wizard-plus-sv-minipreps-dna-purification-system-quick-protocol.pdf",
+      "version": "FB004 · 12/2009",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1–10 mL de cultivo nocturno; condiciones de centrifugación de la tarjeta FB004.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "geneaid-highspeed",
+      "family": "plasmid-miniprep",
+      "title": "Geneaid High-Speed Plasmid · PD100/PD300",
+      "manufacturer": "geneaid",
+      "origin": "commercial",
+      "source": "https://www.geneaid.com/data/files/1605261423275877369.pdf",
+      "version": "High-Speed PD · 02/10/2017",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1–5 mL de cultivo; máximo 10 unidades OD600.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "zyppy-direct",
+      "family": "plasmid-miniprep",
+      "title": "Zyppy · cultivo directo",
+      "manufacturer": "zymo",
+      "origin": "commercial",
+      "source": "https://files.zymoresearch.com/protocols/_d4019_d4020_d4036_d4037_zyppy_plasmid_miniprep_kit.pdf",
+      "version": "D4019/D4020/D4036/D4037",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "600 µL de cultivo LB directamente, sin pellet inicial.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "zyppy-pellet",
+      "family": "plasmid-miniprep",
+      "title": "Zyppy · cultivo sedimentado",
+      "manufacturer": "zymo",
+      "origin": "commercial",
+      "source": "https://files.zymoresearch.com/protocols/_d4019_d4020_d4036_d4037_zyppy_plasmid_miniprep_kit.pdf",
+      "version": "D4019/D4020/D4036/D4037",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "Hasta 3 mL de cultivo; resuspender en 600 µL de TE o agua.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genelute-plasmid",
+      "family": "plasmid-miniprep",
+      "title": "GenElute Plasmid Miniprep · PLN",
+      "manufacturer": "sigma",
+      "origin": "commercial",
+      "source": "https://www.sigmaaldrich.com/deepweb/assets/sigmaaldrich/product/documents/433/883/pln350bul.pdf",
+      "version": "PLN10 / PLN70 / PLN350 · boletín técnico",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1–5 mL según copia plasmídica; en TB/2×YT, la fuente utiliza 1 mL.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "norgen-plasmid",
+      "family": "plasmid-miniprep",
+      "title": "Norgen Plasmid MiniPrep · 13300/46400",
+      "manufacturer": "norgen",
+      "origin": "commercial",
+      "source": "https://norgenbiotek.com/sites/default/files/resources/PI13300-22%20Plasmid%20MiniPrep%20Insert.pdf",
+      "version": "PI13300-22",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias · cultivo de E. coli"
+      ],
+      "inputLimit": "1,5 mL de cultivo de alto número de copias; alternativa de bajo número de copias en notas.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-gram-negative",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Bacterias Gram negativas",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias Gram negativas"
+      ],
+      "inputLimit": "Hasta 2 × 10⁹ células.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-gram-positive",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Bacterias Gram positivas",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Bacterias Gram positivas"
+      ],
+      "inputLimit": "Hasta 2 × 10⁹ células. Buffer con lisozima recién preparado.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-yeast",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Levaduras",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Levaduras"
+      ],
+      "inputLimit": "Hasta 1 × 10⁸ células. Lisis enzimática de pared antes de proteinasa K.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-cultured-cells",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Células animales / humanas",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Células animales / humanas"
+      ],
+      "inputLimit": "Hasta 5 × 10⁶ células en suspensión o 2 × 10⁶ adherentes.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-tissue",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Tejidos animales",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Tejidos animales"
+      ],
+      "inputLimit": "Hasta 20 mg de tejido; hasta 10 mg para bazo.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "genejet-genomic-blood",
+      "family": "genejet-genomic",
+      "title": "GeneJET Genomic · Sangre",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/MAN0012663_GeneJET_Genomic_DNA_Purification_Kit_UG.pdf",
+      "version": "MAN0012663 · Rev. C.00",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Sangre"
+      ],
+      "inputLimit": "200 µL de sangre; rama específica sin RNasa añadida.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "dneasy-plant-mini",
+      "family": "dneasy-plant",
+      "title": "DNeasy Plant Mini · tejido vegetal o fúngico",
+      "manufacturer": "qiagen",
+      "origin": "commercial",
+      "source": "https://www.qiagen.com/en-US/resources/download/kitHandbookAndProtocol/hb-1166-009-hb-dny-plant-0324-ww",
+      "version": "DNeasy Plant Handbook · 03/2024 · pp. 29–33",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas",
+        "Hongos"
+      ],
+      "inputLimit": "Hasta 100 mg de tejido fresco o 20 mg seco; cada carga ≤650 µL.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ctab-ops",
+      "family": "ctab",
+      "title": "CTAB · OPS Diagnostics · plantas",
+      "manufacturer": "ops",
+      "origin": "commercial",
+      "source": "https://opsdiagnostics.com/notes/protocols/ctab_protocol_for_plants.htm",
+      "version": "CTAB protocol for plants · protocolo oficial",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas"
+      ],
+      "inputLimit": "100 mg de material pulverizado por 500 µL de buffer CTAB.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ctab-lu-2011",
+      "family": "ctab",
+      "title": "CTAB · Lu 2011 · hojas secas en placa",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://bio-protocol.org/pdf/bio-protocol89.pdf",
+      "version": "Yongxian Lu · Bio-protocol e89 · 2011",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas"
+      ],
+      "inputLimit": "Hojas secas en tubos/placas compatibles con el mixer-mill; protocolo de alto rendimiento.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ctab-field-2012",
+      "family": "ctab",
+      "title": "CTAB · Abu Almakarem et al. · plantas / hongos",
+      "manufacturer": "pubmed",
+      "origin": "paper",
+      "source": "https://link.springer.com/article/10.1186/1756-0500-5-266",
+      "version": "Abu Almakarem et al. · BMC Research Notes · 2012",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas",
+        "Hongos"
+      ],
+      "inputLimit": "Volúmenes relativos medidos; ajusta el rotor al equipo del artículo.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "trizol-tissue",
+      "family": "trizol-rna",
+      "title": "TRIzol · tejidos",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/trizol_reagent.pdf",
+      "version": "MAN0001271 · Rev. D · 31/03/2025",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Tejidos animales",
+        "Plantas"
+      ],
+      "inputLimit": "50–100 mg de tejido por 1 mL de TRIzol; homogeneizar mecánicamente.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "trizol-adherent",
+      "family": "trizol-rna",
+      "title": "TRIzol · células adherentes",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/trizol_reagent.pdf",
+      "version": "MAN0001271 · Rev. D · 31/03/2025",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Células animales / humanas"
+      ],
+      "inputLimit": "10⁵–10⁷ células adherentes en placa de 3,5 cm por 1 mL de TRIzol.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "trizol-suspension",
+      "family": "trizol-rna",
+      "title": "TRIzol · células en suspensión",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/trizol_reagent.pdf",
+      "version": "MAN0001271 · Rev. D · 31/03/2025",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Células animales / humanas"
+      ],
+      "inputLimit": "5–10 × 10⁶ células animales en suspensión; hasta 0,25 mL de muestra por 1 mL de TRIzol.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "trizol-highsalt",
+      "family": "trizol-rna",
+      "title": "TRIzol · precipitación salina para plantas",
+      "manufacturer": "thermo",
+      "origin": "commercial",
+      "source": "https://documents.thermofisher.com/TFS-Assets/LSG/manuals/trizol_reagent.pdf",
+      "version": "MAN0001271 · Rev. D · 31/03/2025",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas"
+      ],
+      "inputLimit": "50–100 mg de tejido vegetal por 1 mL de TRIzol; alternativa para muestras ricas en polisacáridos.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "directzol-tissue",
+      "family": "directzol-plus",
+      "title": "Direct-zol Plus · tejidos / plantas",
+      "manufacturer": "zymo",
+      "origin": "commercial",
+      "source": "https://files.zymoresearch.com/protocols/_r2070t_r2070_r2071_r2072_r2073_direct-zol_rna_miniprep_plus_kit.pdf",
+      "version": "R2070 / R2071 / R2072 / R2073 · manual",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Plantas",
+        "Tejidos animales"
+      ],
+      "inputLimit": "≤50 mg de plantas; tejidos animales ≤20 mg ricos en RNA o ≤50 mg de bajo rendimiento; ≥800 µL de TRI Reagent.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "directzol-wall",
+      "family": "directzol-plus",
+      "title": "Direct-zol Plus · levaduras / Gram positivas",
+      "manufacturer": "zymo",
+      "origin": "commercial",
+      "source": "https://files.zymoresearch.com/protocols/_r2070t_r2070_r2071_r2072_r2073_direct-zol_rna_miniprep_plus_kit.pdf",
+      "version": "R2070 / R2071 / R2072 / R2073 · manual",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Levaduras",
+        "Bacterias Gram positivas"
+      ],
+      "inputLimit": "≤10⁸ levaduras o ≤10⁹ bacterias Gram positivas; ≥800 µL de TRI Reagent.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ripa-animal-cells",
+      "family": "protein-ripa",
+      "title": "RIPA · células animales / humanas",
+      "manufacturer": "abcam",
+      "origin": "commercial",
+      "source": "https://www.abcam.com/en-us/technical-resources/protocols/western-blot",
+      "version": "Western blot protocol · sample preparation",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Células animales / humanas"
+      ],
+      "inputLimit": "1 mL de buffer de lisis por 10⁷ células.",
+      "review": "recipe-extracted-from-primary-source"
+    },
+    {
+      "id": "ripa-animal-tissue",
+      "family": "protein-ripa",
+      "title": "RIPA · tejido animal",
+      "manufacturer": "abcam",
+      "origin": "commercial",
+      "source": "https://www.abcam.com/en-us/technical-resources/protocols/western-blot",
+      "version": "Western blot protocol · sample preparation",
+      "section": "Procedimiento y preparación de reactivos",
+      "materials": [
+        "Tejidos animales"
+      ],
+      "inputLimit": "200 mg de tejido por 1.200 µL de buffer de lisis.",
+      "review": "recipe-extracted-from-primary-source"
+    }
+  ]
+}

@@ -7,10 +7,15 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2.1: 21 métodos agrupados y 28 versiones con pasos, recetas y condiciones extraídos de fuentes primarias. Los registros bibliográficos y documentos sin receta se excluyen de las tarjetas. Los metadatos relacionados se anexan por método en Bibliografía; el índice de 497 registros se conserva para trazabilidad.
+- Catálogo v2.2.0: 35 métodos agrupados y 68 procedimientos con receta: 52 comerciales, 14 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
 - Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
 - Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
 - Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
+- Phusion HF/GC y Hot Start Flex; Q5 Hot Start, OneTaq, LongAmp, iProof, SuperFi II, GoTaq G2 y MyTaq HS, conservando stocks y condiciones por producto.
+- Miniprep agrupada con selector para QIAGEN, MACHEREY-NAGEL, Thermo Fisher, NEB, Promega, Geneaid, Zymo, Sigma y Norgen.
+- Extracción por material: GeneJET Genomic (Gram negativas/positivas, levaduras, células, tejidos y sangre), DNeasy Plant (plantas/hongos), tres versiones CTAB, TRIzol (tejidos, células y alternativa salina vegetal), Direct-zol Plus y extracción RIPA.
+- Cantidades por etapa editables con totales por muestra; ratios ligados al volumen real medido del lisado. Selección de material en cada experimento.
+- Versión visible y modo claro/oscuro persistente con preferencia inicial del sistema.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
 - Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación.
@@ -18,7 +23,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 - Soluciones molares, masa/volumen, pureza, diluciones, DNA molar, ratios de cloning, RPM/RCF y ΔΔCt.
 - 30 fichas de medios para microbiología, hongos, plantas y células animales/humanas. 13 dosis comerciales calculables; el resto enlaza la formulación sin inventar dosis.
 - 29 formas químicas en la base. Preparación de stocks de reguladores vegetales por producto: IAA, IBA, NAA, BAP, kinetina, GA3, TDZ, zeatina y 2iP. Seguridad y SDS cuando se han verificado; los campos pendientes se identifican expresamente. Compuestos personales con CAS, proveedor, disolvente, diluyente, preparación y datos de seguridad.
-- Exportación/importación de copia personal, CSV de master mix y JSON de registros. Impresión.
+- Registros de experimentos en curso o finalizados: copiar texto o descargar Markdown, TXT, CSV y JSON con cantidades editadas, parámetros, pasos, notas, fuente y marcas de avance. Copias personales e impresión.
 - PWA con acceso sin conexión después de la primera carga (los documentos externos requieren Internet).
 
 ## Banco de trabajo v2

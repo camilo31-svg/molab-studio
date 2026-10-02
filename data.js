@@ -1,9 +1,11 @@
-import {extractedProtocols} from './paper-protocols.js?v=2.1.1';
-import {curateProtocols} from './catalog.js?v=2.1.1';
-import {literature} from './literature-data.js?v=2.1.1';
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.1.1';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.1.1';
-export const checked='2026-10-01';
+import {extractedProtocols} from './paper-protocols.js?v=2.2.0';
+import {curateProtocols} from './catalog.js?v=2.2.0';
+import {literature} from './literature-data.js?v=2.2.0';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.2.0';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.2.0';
+import {commercialProtocols} from './commercial-protocols.js?v=2.2.0';
+import {extractionProtocols} from './extraction-protocols.js?v=2.2.0';
+export const checked='2026-10-02';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
  {id:'thermo',name:'Thermo Fisher Scientific',short:'TF',color:'#d64748',url:'https://www.thermofisher.com/us/en/home/references/protocols.html'},
@@ -125,5 +127,15 @@ const gbWeb=extractedProtocols.find(p=>p.id==='gb-2021').externalTools[0];
 gb.steps[0].external=gbWeb;
 gb.externalTools=[gbWeb];
 gb.modifications=[{authors:'Cooke et al. (2025)',change:'Usan incubación de 18 h a 37 °C y un toolkit GB2.0 adaptado a E. coli. La receta utiliza ratio molar 1:1 y enzimas/stock específicos.',purpose:'Adaptar GB2.0 a partes y vectores de expresión en E. coli; no sustituye el ciclado de otras versiones.',url:gb.source}];
+sources.push(
+ {id:'bioline',name:'Meridian Bioscience · Bioline',short:'MB',color:'#7c59ba',url:'https://www.bioline.com/'},
+ {id:'geneaid',name:'Geneaid',short:'GA',color:'#428ba0',url:'https://www.geneaid.com/Plasmid-DNA-Purification/PD'},
+ {id:'norgen',name:'Norgen Biotek',short:'NG',color:'#536bab',url:'https://norgenbiotek.com/product/plasmid-dna-miniprep-kit'},
+ {id:'ops',name:'OPS Diagnostics',short:'OP',color:'#57866c',url:'https://opsdiagnostics.com/notes/protocols/ctab_protocol_for_plants.htm'},
+ {id:'abcam',name:'Abcam',short:'AB',color:'#c26478',url:'https://www.abcam.com/en-us/technical-resources/protocols/western-blot'}
+);
+sources.find(s=>s.id==='mn').url='https://www.mn-net.com/media/pdf/26/71/8f/LF-NucleoSpin-Plasmid.pdf';
+Object.assign(protocols.find(p=>p.id==='quickdna'),{category:'Extracción de ácidos nucleicos',materials:['Células animales / humanas'],inputLimit:'Hasta 200 µL de suspensión celular; receta BioFluid & Cell Buffer del protocolo rápido.'});
+protocols.push(...commercialProtocols,...extractionProtocols);
 protocols.splice(0,protocols.length,...curateProtocols(protocols,literature));
 export const categories=[...new Set(protocols.map(p=>p.category))];

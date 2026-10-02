@@ -1,16 +1,12 @@
-# Verificación Molab Studio v2.1.1
+# Verificación Molab Studio v2.2.0
 
-- 21 métodos agrupados, 28 procedimientos con pasos y condiciones de fuente primaria: 14 comerciales, 12 de papers y 2 de Addgene (laboratorio).
-- 16 procedimientos nuevos; selector de versiones para GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Transformación química de E. coli agrupa las versiones Addgene y NEB manteniendo el origen individual.
-- 130 registros del índice de PubMed anexados a métodos correspondientes, además de fuentes primarias y modificaciones revisadas. Los 497 metadatos del índice original se conservan para trazabilidad; los métodos sin receta extraída no generan tarjetas.
-- GreenGate 2.0 se describe como modificación de GreenGate, con autores y finalidad; no se presenta una reacción nueva con parámetros incompletos. Domesticación/diseño GoldenBraid es un paso externo dentro del método.
-- Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales/humanas. Las recetas identifican el organismo/producto y los stocks; no se extrapolan como universales.
-- DNA: reverse, complement (3′ → 5′), reverse complement (5′ → 3′), GC y Tm estimada. BLAST abre NCBI sin enviar automáticamente la secuencia. Tm por composición: Wallace para menos de 14 nt; fórmula 64,9 + 41 × (GC − 16,4)/N para secuencias más largas. No determina una temperatura de annealing.
-- 33 pruebas automatizadas pasan: cálculos, procedencia, separación de orígenes, agrupación, pasos externos, fases térmicas, DNA y renderizado de pantallas. Assets del service worker comprobados presentes.
-- Verificación en GitHub Pages: selector GoldenBraid, cambio de versión y programa, bibliografía dentro del método, modificaciones con autores/finalidad, filtros separados, guardia de Start sin volúmenes de stock, y DNA AAGC → CGAA / TTCG / GCTT, GC 50 %, Tm Wallace 12 °C. Enlace BLAST con destino de nueva pestaña, sin envío automático. Sin errores de consola en esas rutas.
-- Vista móvil: viewport solicitado 390 × 844, ancho de contenido medido 375 px, sin desbordamiento horizontal; selector de versiones dentro del ancho disponible.
-- Favoritos, notas, configuraciones y experimentos usan la misma clave de almacenamiento. No se borran datos personales; enlaces antiguos a domesticación/ensamblaje GoldenBraid y GreenGate/Loop resuelven a la ficha correspondiente.
+- 68 procedimientos agrupados en 35 métodos; 52 comerciales, 14 de papers y 2 de laboratorio. Identificadores únicos, fuentes primarias y bibliografía dentro de cada método.
+- Ampliación de 40 recetas: 12 de PCR y 28 de extracción. Phusion se agrupa en cinco versiones. Diez recetas miniprep de nueve fabricantes, sin intercambiar buffers entre kits.
+- Materiales de extracción: Gram negativas/positivas, levaduras, plantas, hongos, células animales/humanas, tejidos animales y sangre; solo se ofrecen los materiales documentados para esa versión.
+- Tres recetas CTAB; cuatro TRIzol RNA, incluida precipitación salina vegetal. GeneJET Genomic mantiene las concentraciones de etanol y digestiones específicas de cada muestra.
+- Reactivos secuenciales, totales por muestras independientes y dependencias calculadas de volumen medido (AW1, etanol, isopropanol). Las instrucciones de ejecución resuelven las cantidades modificadas.
+- Exportación Markdown/TXT/CSV/JSON en curso y al terminar; copia de texto, parámetros, notas y marcas de avance. Las marcas de la guía no prueban condiciones reales del equipo.
+- Modo oscuro/claro persistente; versión en la esquina superior derecha. Se conserva la clave de datos personales y se aceptan las configuraciones anteriores.
+- 43 pruebas automatizadas pasan: cálculos, fórmulas y controles, separación de orígenes, recetas por fabricante/material, dependencias y cantidades ejecutadas, exportación, pantallas de todas las extracciones, tema y herramientas de DNA.
 
-Las condiciones se han extraído y resumido, no validado experimentalmente. No se afirma cobertura exhaustiva. Los volúmenes de DNA y enzimas dependientes del stock se deben introducir antes de iniciar las recetas que los requieren. Las citas relacionadas son metadatos, no modificaciones revisadas automáticamente.
-
-Cada versión conserva URL, DOI cuando corresponde, sección, cantidades, condiciones y fecha de revisión. Fuentes nuevas: Matinyan 2021, Cooke 2025, Lampropoulos 2013, Pollak 2019/2020 y protocolo de autores, mBio 01167-24, Fitzgerald/Rodriguez/Lewis 2022, Piepers 2023, Clough/Bent 1998, Davis 2009, Bashandy/Jalkanen/Teeri 2015, NEB C2987/C3020, Addgene y manuales Thermo Fisher Lipofectamine 3000.
+El catálogo tiene cobertura documentada y ampliable; no es exhaustivo mundialmente. Las condiciones están extraídas de las fuentes, sin validación experimental propia. reviewed-sources.json conserva la procedencia por procedimiento; catalog-index.json distingue la recuperación automática anterior de la revisión de recetas.

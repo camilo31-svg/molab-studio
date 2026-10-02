@@ -28,11 +28,12 @@ export function curateProtocols(raw,literature=[]){
   const family=p.family||a?.[0]||p.id;
   const primary={title:p.title,authors:p.version,doi:p.doi,source:p.source,role:'primary',sourceType:p.sourceType};
   const matches=literature.filter(r=>r.doi&&p.doi&&r.doi.toLowerCase()===p.doi.toLowerCase()||r.source===p.source||a?.[2].includes(r.method));
-  const citations=uniqueCitations([primary,...matches.map(r=>({...r,role:r.doi&&r.doi===p.doi||r.source===p.source?'primary':'related'})),...(p.modifications||[]).map(m=>({title:m.authors+' · modificación del método',authors:m.authors,source:m.url,doi:m.url?.includes('doi.org/')?m.url.split('doi.org/')[1]:undefined,role:'modification'}))]);
+  const citations=uniqueCitations([primary,...(p.citations||[]),...matches.map(r=>({...r,role:r.doi&&r.doi===p.doi||r.source===p.source?'primary':'related'})),...(p.modifications||[]).map(m=>({title:m.authors+' · modificación del método',authors:m.authors,source:m.url,doi:m.url?.includes('doi.org/')?m.url.split('doi.org/')[1]:undefined,role:'modification'}))]);
   return {...p,origin,family,familyTitle:p.familyTitle||a?.[1]||p.title,citations};
  });
 }
 export function matchesOrigin(p,origin='all'){return origin==='all'||p.origin===origin;}
+export function selectVersions(versions,{material='',manufacturer=''}={}){return versions.filter(p=>(!material||(p.materials||[]).includes(material))&&(!manufacturer||p.manufacturer===manufacturer));}
 export function buildFamilies(protocols,origin='all'){
  const families=new Map();
  for(const p of protocols.filter(hasRecipe).filter(p=>matchesOrigin(p,origin))){const id=p.family||p.id;if(!families.has(id))families.set(id,{id,title:p.familyTitle||p.title,category:p.category,versions:[],tags:[]});const f=families.get(id);f.versions.push(p);f.tags=[...new Set([...f.tags,...(p.tags||[])])];}
