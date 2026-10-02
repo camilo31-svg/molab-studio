@@ -1,4 +1,4 @@
-import {literature} from './literature-data.js?v=2.2.0';
+import {literature} from './literature-data.js?v=2.3.0';
 export const extraSources=[{id:'pubmed',name:'Literatura · PubMed',short:'PM',color:'#346487',url:'https://pubmed.ncbi.nlm.nih.gov/'},{id:'goldenbraid',name:'GoldenBraid · IBMCP',short:'GB',color:'#bd9238',url:'https://goldenbraidpro.com/'},{id:'addgene',name:'Addgene',short:'AG',color:'#ae4962',url:'https://www.addgene.org/protocols/'},{id:'phytotech',name:'PhytoTech Labs',short:'PT',color:'#568460',url:'https://phytotechlab.com/technical-info'}];
 const refs=[
  ['gb-domestication','GoldenBraid 2.0 · domesticación','Retirada de sitios internos y creación de GBparts','https://goldenbraidpro.com/files/documents/GB2.0_Users_manual.pdf','goldenbraid','La domesticación prepara las partes para la gramática GB2.0.'],

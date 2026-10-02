@@ -7,7 +7,7 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 ## Funcionalidad
 
 - Búsqueda y navegación fabricante → técnica → protocolo.
-- Catálogo v2.2.0: 35 métodos agrupados y 68 procedimientos con receta: 52 comerciales, 14 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
+- Catálogo v2.3.0: 37 métodos agrupados y 75 procedimientos con receta: 55 comerciales, 18 publicados en papers y 2 de laboratorio. Las citas bibliográficas se anexan al método; los documentos sin receta extraída no generan tarjetas.
 - Selector de versiones: GoldenBraid, Golden Gate, Loop/uLoop, floral dip y Lipofectamine 3000. Filtros Todos / Comerciales / Publicados en papers según el origen de la receta, no el fabricante de una enzima. Addgene conserva el origen «laboratorio».
 - Competencia química de E. coli, transformación química/electroporación, levadura, Agrobacterium, floral dip, agroinfiltración y transfección no viral de líneas animales y humanas.
 - Modificaciones publicadas con autores y finalidad. Diseño/domesticación GoldenBraid enlazados en el paso correspondiente, sin crear otra tarjeta.
@@ -18,7 +18,12 @@ Aplicación de laboratorio molecular en español, adaptable a móvil, con una in
 - Versión visible y modo claro/oscuro persistente con preferencia inicial del sistema.
 - Favoritos de protocolos, compuestos y medios. Notas personales por protocolo y medio.
 - Master mix ligada a cada protocolo, muestras, controles, exceso y agua hasta volumen final. DNA separado de la mezcla común.
-- Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación.
+- Programa térmico visual, editable, ciclos, temperaturas, tiempos y conservación. Descarga independiente en texto/Markdown, CSV, Excel y gráfica SVG; también se exportan condiciones no térmicas.
+- Competentes de A. tumefaciens desde placa (MOG301/EHA105/LBA4404) y electroporación; A. rhizogenes K599 con CaCl₂ y transformación por congelación/choque. Especies filtrables y bibliografía anexa; GV3101 mantiene su propia versión.
+- Digestiones en Cálculos → Restricción y Protocolos → Restricción: NEB, Thermo FastDigest y Promega; 36 productos revisados. Hasta 3 enzimas, selección de buffer por actividad común, colorantes declarados y temperaturas. No se asume compatibilidad entre fabricantes ni entre versiones estándar/HF.
+- Masa objetivo (ng), stocks de DNA (ng/µL), volúmenes editables de enzimas y reacción final. Hasta 3 muestras manuales o importación local de Excel .xlsx con hoja, columnas, fila de cabecera y unidades elegibles. Los valores inválidos y duplicados se muestran para corregirlos.
+- Tabla por muestra, pool físico opcional con igual masa de cada muestra, mezcla común con exceso y BSA cuando corresponde. Exportación .xlsx con fórmulas y datos originales; guardar y ejecutar con una instantánea de la receta.
+- Las combinaciones con temperaturas diferentes, actividad insuficiente, agua negativa o >10 % de enzima no se inician como digestión simultánea. Actividad parcial requiere revisar la ficha y confirmar; tiempos y stocks modificados quedan indicados.
 - Ejecución guiada con siguiente/anterior, condiciones, cronómetros, reanudación y registro del experimento.
 - Soluciones molares, masa/volumen, pureza, diluciones, DNA molar, ratios de cloning, RPM/RCF y ΔΔCt.
 - 30 fichas de medios para microbiología, hongos, plantas y células animales/humanas. 13 dosis comerciales calculables; el resto enlaza la formulación sin inventar dosis.
@@ -96,3 +101,7 @@ python scripts/index-pubmed.py --skill-script /ruta/ncbi-entrez-skill/scripts/nc
 ```
 
 La reindexación reemplaza solamente metadatos, no los pasos revisados. Revisar cambios y exclusiones antes de publicar. El intento Europe PMC devolvió HTTP 503 y no aportó datos; `index-literature.mjs` conserva esa alternativa de consulta.
+
+## Biblioteca Excel
+
+SheetJS Community Edition 0.20.3 (mini, solo .xlsx) se conserva en vendor/ con licencia Apache 2.0. Descargada de https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.mini.min.js. SHA-256: 0cb353f830d7288385492c83d277b058ddeac664ca51cf1393aa1fd3e2b70939. No se envían archivos de muestras a servidores ni se ejecutan macros o fórmulas importadas. Las fórmulas de salida recalculan cantidades; la compatibilidad biológica debe reevaluarse en Molab si se cambian enzimas o buffers.

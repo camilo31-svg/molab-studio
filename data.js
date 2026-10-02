@@ -1,10 +1,12 @@
-import {extractedProtocols} from './paper-protocols.js?v=2.2.0';
-import {curateProtocols} from './catalog.js?v=2.2.0';
-import {literature} from './literature-data.js?v=2.2.0';
-import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.2.0';
-import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.2.0';
-import {commercialProtocols} from './commercial-protocols.js?v=2.2.0';
-import {extractionProtocols} from './extraction-protocols.js?v=2.2.0';
+import {extractedProtocols} from './paper-protocols.js?v=2.3.0';
+import {curateProtocols} from './catalog.js?v=2.3.0';
+import {literature} from './literature-data.js?v=2.3.0';
+import {extraSources,curatedProtocols,indexedProtocols,extraCompounds,compoundDetails,extraMedia} from './extended-data.js?v=2.3.0';
+import {reviewedAssemblies} from './reviewed-assemblies.js?v=2.3.0';
+import {commercialProtocols} from './commercial-protocols.js?v=2.3.0';
+import {extractionProtocols} from './extraction-protocols.js?v=2.3.0';
+import {agrobacteriumProtocols} from './agrobacterium-protocols.js?v=2.3.0';
+import {restrictionProtocols} from './restriction-data.js?v=2.3.0';
 export const checked='2026-10-02';
 export const sources=[
  {id:'neb',name:'New England Biolabs',short:'NEB',color:'#1760c2',url:'https://www.neb.com/en-us/tools-and-resources/protocols'},
@@ -136,6 +138,6 @@ sources.push(
 );
 sources.find(s=>s.id==='mn').url='https://www.mn-net.com/media/pdf/26/71/8f/LF-NucleoSpin-Plasmid.pdf';
 Object.assign(protocols.find(p=>p.id==='quickdna'),{category:'Extracción de ácidos nucleicos',materials:['Células animales / humanas'],inputLimit:'Hasta 200 µL de suspensión celular; receta BioFluid & Cell Buffer del protocolo rápido.'});
-protocols.push(...commercialProtocols,...extractionProtocols);
+protocols.push(...commercialProtocols,...extractionProtocols,...agrobacteriumProtocols,...restrictionProtocols);
 protocols.splice(0,protocols.length,...curateProtocols(protocols,literature));
 export const categories=[...new Set(protocols.map(p=>p.category))];

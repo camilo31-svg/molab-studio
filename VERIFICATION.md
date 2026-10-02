@@ -1,16 +1,15 @@
-# Verificación Molab Studio v2.2.0
+# Verificación Molab Studio v2.3.0
 
-- 68 procedimientos agrupados en 35 métodos; 52 comerciales, 14 de papers y 2 de laboratorio. Identificadores únicos, fuentes primarias y bibliografía dentro de cada método.
-- Ampliación de 40 recetas: 12 de PCR y 28 de extracción. Phusion se agrupa en cinco versiones. Diez recetas miniprep de nueve fabricantes, sin intercambiar buffers entre kits.
-- Materiales de extracción: Gram negativas/positivas, levaduras, plantas, hongos, células animales/humanas, tejidos animales y sangre; solo se ofrecen los materiales documentados para esa versión.
-- Tres recetas CTAB; cuatro TRIzol RNA, incluida precipitación salina vegetal. GeneJET Genomic mantiene las concentraciones de etanol y digestiones específicas de cada muestra.
-- Reactivos secuenciales, totales por muestras independientes y dependencias calculadas de volumen medido (AW1, etanol, isopropanol). Las instrucciones de ejecución resuelven las cantidades modificadas.
-- Exportación Markdown/TXT/CSV/JSON en curso y al terminar; copia de texto, parámetros, notas y marcas de avance. Las marcas de la guía no prueban condiciones reales del equipo.
-- Modo oscuro/claro persistente; versión en la esquina superior derecha. Se conserva la clave de datos personales y se aceptan las configuraciones anteriores.
-- 44 pruebas automatizadas pasan: cálculos, fórmulas y controles, separación de orígenes, recetas por fabricante/material, dependencias y cantidades ejecutadas, exportación, pantallas de todas las extracciones, tema y herramientas de DNA.
+- 75 procedimientos con receta agrupados en 37 métodos; 55 comerciales, 18 de papers y 2 de laboratorio. Se mantienen los filtros por origen y material, la bibliografía anexa y los datos personales existentes.
+- Cuatro recetas nuevas de Agrobacterium: competencia y transformación de A. tumefaciens (MOG301/EHA105/LBA4404) y A. rhizogenes K599. La transformación GV3101 continúa como versión diferenciada. En K599 se señala expresamente la temperatura de 37 °C de la placa inicial que indica Xu et al., distinta del cultivo líquido a 28 °C.
+- Tres variantes comerciales de digestión, una familia: NEB, Thermo FastDigest y Promega. Matrices de compatibilidad de 36 productos y buffers con actividades exactas o rangos publicados. Se evita interpolar actividades entre fabricantes. Colores: FastDigest Green contiene azul y amarillo; los códigos de tapón sin fuente se declaran no especificados.
+- Cálculos para 1–3 enzimas: DNA objetivo en ng, concentración por muestra en ng/µL, volumen final, cantidades de enzima, agua, buffer y BSA Promega. Pool físico reparte masa total por igual y usa los reactivos una sola vez.
+- Importación .xlsx local con elección de hoja, cabecera, columnas y unidades. Conserva medición/unidad/fila original. Muestra datos no numéricos, ceros, duplicados y agua negativa; no elimina filas fallidas.
+- Exportación de Excel real con valores tipados, fórmulas, condiciones, notas, fuentes y datos originales. Ensayo de cuatro muestras: 100/80/50/125 ng/µL; DNA 10/12,5/20/8 µL para 1.000 ng, 50 µL finales, 5 µL buffer y enzimas 0,5 + 0,5 + 1 µL. Agua: 33/30,5/23/35 µL.
+- Reimportación del archivo exportado y recálculo con Artifact Tool. Cambiar 100 a 200 ng/µL produce DNA 5 µL y agua 38 µL; poner cero indica concentración inválida. Sin errores de fórmula encontrados. Hojas Digestiones y Condiciones renderizadas y revisadas; plantilla de concentraciones renderizada. No se ha comprobado con Excel nativo.
+- Exportación independiente de programas antes de Start, durante una guía y desde registros: texto, CSV, XLSX y SVG para programas térmicos. Se conservan temperaturas modificadas, ciclos y fases sin duración fija.
+- 56 pruebas automatizadas pasan: las 44 anteriores más cálculos por muestra/pool, compatibilidad de triple digestión, invalidaciones, colores/BSA, importación, XLSX de ida y vuelta, programas, agrupación y pantallas.
 
-El catálogo tiene cobertura documentada y ampliable; no es exhaustivo mundialmente. Las condiciones están extraídas de las fuentes, sin validación experimental propia. reviewed-sources.json conserva la procedencia por procedimiento; catalog-index.json distingue la recuperación automática anterior de la revisión de recetas.
+El catálogo es ampliable, no exhaustivo mundialmente. La recomendación maximiza la actividad mínima documentada, evitando buffers marcados con star; no garantiza digestión de cualquier sustrato. Metilación, pureza, sitios terminales, escala y dosis se revisan en la ficha concreta. Temperaturas diferentes requieren un protocolo secuencial y no se convierten automáticamente en una digestión simultánea.
 
-Comprobación en GitHub Pages: selección de miniprep Geneaid; tres muestras con elución 35 µL (105 µL totales), modificación durante la guía a 40 µL (120 µL totales) con historial; informe y copia de texto en curso y al finalizar. Sin errores de consola en ese recorrido.
-
-Vista móvil comprobada a 390 × 844: ancho de contenido 375 px, sin desbordamiento horizontal; barra de navegación inferior, versión y cambio de tema visibles. El modo oscuro persiste tras recargar. Filtro Plantas excluye minipreps bacterianas y ramas GeneJET Genomic de otros materiales.
+Comprobación pública de esta versión: pendiente de publicación y revisión en navegador.

@@ -1,6 +1,7 @@
-import {masterMix} from './calc.js?v=2.2.0';
+import {masterMix} from './calc.js?v=2.3.0';
+import {digestText} from './restriction-calc.js?v=2.3.0';
 
-export const APP_VERSION='2.2.0';
+export const APP_VERSION='2.3.0';
 export function reagentAmounts(rows=[]){
  const seen=new Set();
  function amount(r){
@@ -25,6 +26,7 @@ const table=(heads,rows)=>['| '+heads.join(' | ')+' |','| '+heads.map(()=> '---'
 export function experimentReport(run){
  const c=run.config||{},lines=[`# ${clean(run.name||run.title||'Experimento Molab')}`,'',`Molab Studio ${run.appVersion||'versión no registrada'} · ID: ${run.id||'—'}`,`Informe generado con v${APP_VERSION}`,`Estado: ${run.complete?'Finalizado':'En curso / instantánea'}`,`Inicio: ${run.date||'—'}`,`Fin: ${run.finishedAt||'—'}`,`Protocolo: ${run.protocolTitle||run.protocolId||'—'}`,`Versión del documento: ${run.version||'—'}`,`Fabricante / autores: ${run.manufacturerName||'—'}`,`Material de partida: ${(run.materials||[]).join(', ')||'No especificado'}`,`Límite de partida: ${run.inputLimit||'No registrado'}`,`Fuente: ${run.source||'—'}`,`Configuración: ${c.edited?'Modificada por el usuario':'Valores iniciales'}`,''];
  if(run.kind==='calculation'){lines.push(clean(run.result));return lines.join('\n');}
+ if(run.restrictionResult)lines.push('## Digestión calculada',digestText(c.restriction,run.restrictionResult),'');
  lines.push(`Muestras: ${c.reactions}`,`Controles: ${c.components?.length?c.controls:'No aplica'}`,`Exceso de mezcla: ${c.components?.length?c.excess+' %':'No aplica'}`,'');
  if(c.components?.length){lines.push('## Mezcla de reacción',`Volumen final: ${c.volume} µL por reacción`,'');try{const mix=masterMix(c,c.components);lines.push(table(['Reactivo','Por reacción (µL)','Total (µL)','Destino'],mix.rows.map(r=>[r.name,r.per,r.total,r.template?'Añadir por tubo':'Mezcla común'])));}catch(err){lines.push('Cálculo no disponible: '+err.message);}lines.push('');}
  if(c.reagents?.length){lines.push('## Reactivos por etapa',`Totales para ${c.reactions} muestras independientes. Cada fila se utiliza en su etapa; no es una mezcla común.`,'',table(['Reactivo / medida','Por muestra','Total','Unidad','Detalle'],reagentAmounts(c.reagents).map(r=>[r.name,r.amount,r.measurement?'Medir cada muestra':r.amount*c.reactions,r.unit,r.note||''])),'');}
@@ -53,5 +55,6 @@ export function experimentCSV(run){
  for(const ev of run.events||[])rows.push(['Avance',ev.title,ev.remaining,'','s pendientes',ev.date]);
  for(const event of run.quantityChanges||[])for(const r of event.changes)rows.push(['Cambio en paso '+(event.step+1),r.name,r.from,r.to,r.unit,event.date]);
  if(run.kind==='calculation')rows.push(['Cálculo',run.result,'','','','']);
+ if(run.restrictionResult){const r=run.restrictionResult;rows.push(['Digestión','Buffer',r.bufferVolume,'','µL',r.buffer.name+' · '+r.buffer.color],['Digestión','Volumen final',r.volume,'','µL',r.mode],['Digestión','DNA objetivo',r.target,'','ng',r.mode==='pool'?'Total del pool':'Por muestra']);for(const s of r.rows){rows.push(['Muestra '+s.name,'Concentración',s.concentration,'','ng/µL',s.error],['Muestra '+s.name,'DNA',s.dna,'','µL',s.mass+' ng'],['Muestra '+s.name,'Agua',s.water,'','µL',r.mode==='pool'?'Solo en el tubo del pool':'Por tubo']);}for(const en of r.enzymes)rows.push(['Digestión','Enzima '+en.name,en.volume,'','µL',en.stock===null?'Stock no indicado':en.stock+' U/µL']);if(r.bsaVolume)rows.push(['Digestión','BSA acetilada',r.bsaVolume,'','µL','Stock 10 µg/µL']);if(r.mode==='pool')rows.push(['Pool','DNA',r.poolDna,'','µL',''],['Pool','Agua',r.poolWater,'','µL','']);}
  return '\uFEFF'+rows.map(row=>row.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');
 }
