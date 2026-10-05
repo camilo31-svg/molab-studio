@@ -45,3 +45,8 @@ dialog::backdrop{background:rgba(12,25,45,.32);backdrop-filter:blur(4px)}
 @media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.sidebar.glass,.topbar,.lg-group,.lg-selector{background:var(--lg-solid)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.lg-selector{background:color-mix(in srgb,var(--blue) 15%,var(--lg-solid))!important}.lg-selector::before,.lg-selector::after{display:none}}
 @media(forced-colors:active){.sidebar.glass,.topbar,.lg-group,.lg-selector{color:CanvasText;background:Canvas!important;backdrop-filter:none!important;box-shadow:none}.nav-item.active,.lg-group>button.selected{outline:2px solid Highlight}.lg-selector::before,.lg-selector::after{display:none}}
 @media print{.lg-selector,.lg-optics{display:none!important}.panel,.protocol-card{box-shadow:none;background:white!important}.topbar{display:none}}
+
+/* Category filters and calculator subnavigation share the optical selector. */
+.category-row.lg-group{width:fit-content;max-width:100%;flex-wrap:wrap;padding:5px;gap:4px;border-radius:26px;overflow:visible}
+.category-row.lg-group>button.chip{flex:0 1 auto;background:transparent;border:0;box-shadow:none;min-width:0}
+.category-row.lg-group>button.chip.active,html[data-theme=dark] .category-row.lg-group>button.chip.active{background:transparent;color:var(--blue);box-shadow:none}
