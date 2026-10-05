@@ -64,3 +64,37 @@ html[data-theme=dark] .finish-icon{background:#1d5549;color:#94e8cb}
 .media-preparation .table-wrap,.media-stock .table-wrap{width:100%;max-width:100%;overflow-x:auto}
 
 @media(max-width:600px){#media-catalog,.page-heading>[data-nav="notebook"],.page-heading>[data-nav="sessions"]{font-size:.8rem;padding:8px 12px;white-space:normal}}
+
+/* Content-first catalog: quiet surfaces, readable data, independent grouping. */
+.ambient{background:#edf2fa}
+html[data-theme=dark] .ambient{background:#101a2d}
+.catalog-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}
+.catalog-heading .subheading{font-size:1rem;margin-top:6px}
+.catalog-search{margin-bottom:16px}.catalog-search .search-wrap{max-width:none}
+.catalog-toolbar{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:12px}
+.technique-filter{flex:1;min-width:180px}.grouping-filter{min-width:150px}
+.catalog-toolbar .toggle button{min-height:44px;font-size:.875rem}
+.catalog-filter-disclosure{border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:12px}
+.catalog-filter-disclosure summary{cursor:pointer;color:var(--muted);font-size:.875rem;padding:8px 0;min-height:44px}
+.catalog-filter-disclosure .origin-tabs{width:fit-content;margin:12px 0}
+.catalog-filter-disclosure .catalog-filters{margin-bottom:12px}
+.catalog-summary{font-size:.875rem;color:var(--muted);margin:0 0 14px}
+.catalog-group{margin-bottom:24px}.catalog-group>h3{margin:0 0 12px}
+.catalog-table{border:1px solid var(--line);border-radius:14px;background:#fff}
+.catalog-table table{width:100%;margin:0}.catalog-table th{font-size:.8125rem;text-align:left}
+.catalog-table td{font-size:.875rem;vertical-align:middle}.catalog-table th,.catalog-table td{padding:14px 12px}
+.catalog-table td{color:var(--muted)}.catalog-table th{color:var(--ink)}.catalog-table td:nth-child(3){min-width:120px}
+.catalog-table td:first-child{min-width:180px}.catalog-table td:nth-child(3){max-width:260px;overflow-wrap:anywhere}
+.list-title{border:0;background:none;color:var(--ink);text-align:left;padding:8px 0;min-height:44px;font-weight:650;line-height:1.5}
+.list-title:hover{color:var(--blue);text-decoration:underline}.catalog-table tr:hover{background:#edf2fa}
+.card-subtitle{font-size:.9375rem}.vendor-name,.help,.source-box,.step-meta{font-size:.875rem}
+.eyebrow,.panel-label{font-size:.8125rem;color:var(--muted)}
+.panel,.protocol-card,.side-panel{background:#fff;backdrop-filter:none}
+html[data-theme=dark] :is(.panel,.protocol-card,.side-panel,.catalog-table){background:#192941}
+html[data-theme=dark] .catalog-table tr:hover{background:#233754}
+.icon-button{width:44px;height:44px}.field{font-size:.875rem}.field input,.field select,.field textarea{font-size:1rem}
+:is(button,a,input,select,textarea,summary):focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+@media(max-width:600px){.catalog-heading{align-items:flex-start;flex-wrap:wrap}.catalog-heading h1{font-size:1.75rem}.catalog-heading .button{min-height:44px}.catalog-toolbar{gap:10px}.technique-filter{flex-basis:100%}.grouping-filter{flex:1;min-width:0}.catalog-table th,.catalog-table td{padding:10px}.catalog-summary{line-height:1.6}}
+@media(max-width:600px){.catalog-table table,.catalog-table tbody{display:block}.catalog-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.catalog-table tr{display:grid;grid-template-columns:minmax(0,1fr) 44px;padding:12px;gap:4px 10px}.catalog-table td{display:block;padding:0;border:0;min-width:0!important;max-width:none!important}.catalog-table td:first-child{grid-column:1;grid-row:1}.catalog-table td:nth-child(2){grid-column:1;grid-row:2}.catalog-table td:nth-child(3){grid-column:1;grid-row:3}.catalog-table td:nth-child(4){grid-column:1;grid-row:4}.catalog-table td:nth-child(4)::after{content:' versiones'}.catalog-table td:last-child{grid-column:2;grid-row:1}.catalog-table tr+tr{border-top:1px solid var(--line)}}
+@media(prefers-reduced-transparency:reduce){.glass,.origin-tabs,.toggle{backdrop-filter:none;background:#fff}html[data-theme=dark] :is(.glass,.origin-tabs,.toggle){background:#192941}}
+@media print{.catalog-toolbar,.catalog-filter-disclosure,.catalog-heading>.button{display:none!important}.catalog-table{overflow:visible}}
